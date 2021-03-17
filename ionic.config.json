@@ -1,5 +1,8 @@
 {
   "name": "MiniSecchi",
-  "integrations": {},
-  "type": "angular"
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "a6a298da"
 }

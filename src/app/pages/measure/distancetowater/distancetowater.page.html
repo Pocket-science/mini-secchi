@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>1 Distance to water</ion-title>
+
+   <ion-buttons slot="start">
+     <ion-back-button></ion-back-button>
+   </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content><p>
+The Secchi depth is measured by lowering the white disk into the water and recording the depth at which it dissapears and reappears from sight.</p>
+Record the distance from your hand to the water surface (DO). 
+
+<ion-item>
+  <ion-label>Distance:</ion-label>
+
+<!-- Number type input -->
+<ion-input [(ngModel)]="distancetowater" type="number" inputmode="numeric" value="00"></ion-input></ion-item>
+
+
+
+ <ion-button expand="block"  (click)="validate()" routerLink="/measure/reappear" routerDirection="forward">
+ Step 2: Secchi disk re-appearing distance
+ </ion-button>
+
+</ion-content>
