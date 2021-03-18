@@ -17,7 +17,7 @@ export class DistancetowaterPage implements OnInit {
 
 
   async validate() {
-    alert(`hola ${this.distancetowater}!`);
+  //  alert(`hola ${this.distancetowater}!`);
     await this.storage.create();
 
 this.storage.set('distancetowater', this.distancetowater).then(result => {

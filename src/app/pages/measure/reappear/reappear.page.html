@@ -17,9 +17,9 @@ Lower the disk until it disappears. Raise the disk and record the distance at wh
   <ion-label>Distance:</ion-label>
 
 <!-- Number type input -->
-<ion-input type="number" value="00"></ion-input></ion-item>
+<ion-input [(ngModel)]="reappear" type="number" inputmode="numeric" value="00"></ion-input></ion-item>
 
- <ion-button expand="block" routerLink="/measure/colourathalfdepth" routerDirection="forward">
+ <ion-button expand="block" (click)="validate()" routerLink="/measure/colourathalfdepth" routerDirection="forward">
  Step 3: Colour at half depth
  </ion-button>
 
