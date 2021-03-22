@@ -27,7 +27,13 @@ const routes: Routes = [
   {
     path: 'qccheck',
     loadChildren: () => import('./qccheck/qccheck.module').then( m => m.QccheckPageModule)
-  }
+  },
+  {
+    path: 'additionalobservations',
+    loadChildren: () => import('./additionalobservations/additionalobservations.module').then( m => m.AdditionalobservationsPageModule)
+  },
+
+
 ];
 
 @NgModule({
