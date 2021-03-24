@@ -1,7 +1,8 @@
 export const ENV = {
     production: false,
-    parseAppId: 'prodiiNtsbeC8qZfzX243hZFUiV03bcGBkiBXtRMIZGG',
-    parseServerUrl: 'https://prod3.ddq.nl/spectacle'
+    parseAppId: '5yHaDCnG17ySDKKQ0BqL13eWOMoygILWmwnYjDbuDO',
+    parseServerUrl: 'https://prod3.ddq.nl/mini-secchi',
+    parseJSKey: '15Inx8rIAqZGhlEDNixoNHb8X8KioVg4DuMX7Bk7'
 }
 
 

@@ -1,7 +1,7 @@
   <ion-header>
 <ion-toolbar>
     <ion-title>6 Additional observations</ion-title>
-    
+
 
    <ion-buttons slot="start">
      <ion-back-button></ion-back-button>
@@ -14,8 +14,8 @@
 
 Additional observations: photo of pH paper and colour scale
 
- <ion-button expand="block" routerLink="/measure/qccheck" routerDirection="forward">
-Save and finish
+ <ion-button expand="block" (click)="validate()" routerLink="/home" routerDirection="root">
+ 	Save and finish
  </ion-button>
 
 </ion-content>

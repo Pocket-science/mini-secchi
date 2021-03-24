@@ -29,6 +29,7 @@
     "capacitor-sqlite": "^2.2.1-3",
     "cordova-plugin-geolocation": "^4.1.0",
     "cordova-sqlite-storage": "^5.1.0",
+    "crypto-js": "^4.0.0",
     "parse": "^3.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

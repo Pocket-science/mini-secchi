@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { Geolocation} from '@capacitor/core';
+import { ParseProvider } from '../providers/parse/parse';
+
 
 
 @Component({
@@ -12,12 +14,14 @@ export class HomePage {
 
   latitude: number;
 longitude: number;
+  newScore = { playerName: null, score: null };
+  gameScores = [];
 
 
-  constructor(private storage: Storage) {
+  constructor(private storage: Storage, private parseProvider: ParseProvider) {
   this.getLocation();
 
-
+ this.newScore = { playerName: 'a', score: 0 };
   }
 
   async getLocation() {
@@ -25,6 +29,17 @@ longitude: number;
   this.latitude = position.coords.latitude;
   this.longitude = position.coords.longitude;
 }
+
+  public postGameScore() {
+    this.parseProvider.addGameScore(this.newScore).then((gameScore) => {
+      this.gameScores.push(gameScore);
+      this.newScore.playerName = null;
+      this.newScore.score = null;
+    }, (error) => {
+      console.log(error);
+      alert('Error adding score.');
+    });
+  }
 
 
 
@@ -46,8 +61,6 @@ console.log('Data is saved');
 }).catch(e => {
 console.log("error: " + e);
 });
-  
-
 
 
     // now save it to 
