@@ -19,7 +19,7 @@
   <ion-label  >Secchi depth: {{secchi_depth}}</ion-label> <br>
 
 
-  <ion-label  >Take a photo of the disk at half the secchi depth and the distance to water: {{colourathalfdepth}} cm</ion-label>
+  <ion-label  >Take a photo of the disk at half the secchi depth  and the distance to water: {{this.halfdepth}} cm</ion-label>
 
    <ion-grid>
     <ion-row>
@@ -32,7 +32,10 @@
   </ion-grid>
 
   <!-- ion-fab markup  -->
+  <ion-label>Colour at half depth (1-21):</ion-label>
+  <ion-item>
 
+<ion-input [(ngModel)]="colourathalfdepth" type="number" inputmode="numeric" value="01"></ion-input></ion-item>
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="addPhotoToGallery()">
@@ -40,10 +43,9 @@
     </ion-fab-button>
   </ion-fab>
 
-  
 
 
- <ion-button expand="block" routerLink="/measure/colouratsurface" routerDirection="forward">
+ <ion-button expand="block"  (click)="validate()"  routerLink="/measure/colouratsurface" routerDirection="forward">
  Step 4: Colour at surface
  </ion-button>
 

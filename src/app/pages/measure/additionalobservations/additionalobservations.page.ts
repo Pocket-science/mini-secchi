@@ -10,47 +10,115 @@ import { ParseProvider } from '../../../providers/parse/parse';
   styleUrls: ['./additionalobservations.page.scss'],
 })
 export class AdditionalobservationsPage implements OnInit {
+// now get all the values
+public latitude: number;
+public longitude: number;
+public distancetowater: number;
+public reappear: number;
+public colourathalfdepth: number;
+public colouratsurface: number;
+public datetime: Date;
+
+  newScore = {  latitude: null, longitude: null, distancetowater: null, reappear: null, colourathalfdepth: null, colouratsurface: null, datetimerecorded: null };
+  gameScores = [];
 
   constructor(private storage: Storage, private parseProvider: ParseProvider) { }
 
   ngOnInit() {
+
+ this.storage.create();
+
+  this.storage.get('latitude').then((val) => {
+
+this.latitude= val;
+
+  });
+
+  this.storage.get('longitude').then((val) => {
+
+this.longitude= val;
+
+  });
+
+
+  this.storage.get('distancetowater').then((val) => {
+
+this.distancetowater= val;
+
+  });
+
+
+    this.storage.get('reappear').then((val) => {
+
+this.reappear= val;
+
+  });
+
+
+    this.storage.get('colourathalfdepth').then((val) => {
+
+this.colourathalfdepth= val;
+
+  });
+
+    this.storage.get('colouratsurface').then((val) => {
+
+this.colouratsurface= val;
+
+  });
+
+
+this.datetime=new Date();
+
+
+
   }
 
   async validate() {
     await this.storage.create();
 
-let items=[];
-return new Promise(resolve=>{
-this.storage.forEach((v,k)=>{
-console.log('value',v);
-console.log('key',k);
-items.push(v);
-}).then(()=>{
-resolve(items);
-})
-})
-/*
-this.storage.set('distancetowater', this.distancetowater).then(result => {
-console.log('Data is saved');
+// Send data to Parse server
+
+this.newScore.latitude=this.latitude;
+this.newScore.longitude=this.longitude;
+this.newScore.distancetowater=this.distancetowater;
+this.newScore.reappear=this.reappear;
+this.newScore.colourathalfdepth=this.colourathalfdepth;
+this.newScore.colouratsurface=this.colouratsurface;
+this.newScore.datetimerecorded=this.datetime.toString();
 
 
-}).catch(e => {
-console.log("error: " + e);
-});
-  this.storage.get('distancetowater').then((val) => {
-
-    console.log('Distance to water', val);
-
-  });
-*/
+this.postGameScore();
 
 
-
-
-
-
-
-    // now save it to 
   }
+
+
+
+ public postGameScore() {
+    this.parseProvider.addGameScore(this.newScore).then((gameScore) => {
+      this.gameScores.push(gameScore);
+
+      this.newScore.datetimerecorded = null;
+this.newScore.distancetowater=null;
+this.newScore.reappear=null;
+this.newScore.colourathalfdepth=null;
+this.newScore.colouratsurface=null;
+
+
+
+      this.newScore.longitude = null;
+      this.newScore.latitude = null;
+    }, (error) => {
+      console.log(error);
+      alert('Error adding score.');
+    });
+  }
+
+
+
+
+
+
 
 }

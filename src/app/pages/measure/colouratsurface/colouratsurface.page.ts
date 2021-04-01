@@ -9,14 +9,32 @@ import { Storage } from '@ionic/storage-angular';
   styleUrls: ['./colouratsurface.page.scss'],
 })
 export class ColouratsurfacePage implements OnInit {
+	public colouratsurface:number;
+  newScore = { playerName: null, score: null };
+  gameScores = [];
+
+
 
   constructor(private storage: Storage, public photoService: PhotoService) { }
-
 addPhotoToGallery() {
   this.photoService.addNewToGallery();
 }
+  async ngOnInit() {
 
-  ngOnInit() {
+
+
+}
+  async validate() {
+    await this.storage.create();
+
+this.storage.set('colouratsurface', this.colouratsurface).then(result => {
+// console.log('Data is saved');
+}).catch(e => {
+ console.log("error: " + e);
+});
+
+
   }
+
 
 }

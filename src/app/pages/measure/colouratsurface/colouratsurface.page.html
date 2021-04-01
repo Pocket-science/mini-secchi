@@ -23,6 +23,17 @@ Surface color: take a picture of the water surface (without the disk)
     </ion-col>
     </ion-row>
   </ion-grid>
+
+
+
+ <ion-label>Colour at surface(1-21):</ion-label>
+  <ion-item>
+
+<ion-input [(ngModel)]="colouratsurface" type="number" inputmode="numeric" value="01"></ion-input></ion-item>
+
+
+
+
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="addPhotoToGallery()">
       <ion-icon name="camera"></ion-icon>
@@ -31,7 +42,7 @@ Surface color: take a picture of the water surface (without the disk)
 
 
 
- <ion-button expand="block" routerLink="/measure/qccheck" routerDirection="forward">
+ <ion-button expand="block"  (click)="validate()" routerLink="/measure/qccheck" routerDirection="forward">
  Step 5: QC Checklist
  </ion-button>
 

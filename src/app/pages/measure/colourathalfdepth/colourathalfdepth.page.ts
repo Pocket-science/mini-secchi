@@ -12,6 +12,8 @@ public reappear_val:number;
 public distancetowater_val: number;
 public secchi_depth:number;
 public colourathalfdepth:number;
+public halfdepth:number;
+
 
   constructor(private storage: Storage, public photoService: PhotoService) { }
 addPhotoToGallery() {
@@ -30,23 +32,23 @@ addPhotoToGallery() {
   });
 
 
+}
+  async validate() {
+  //  alert(`hola ${this.distancetowater}!`);
+    await this.storage.create();
+
+this.storage.set('colourathalfdepth', this.colourathalfdepth).then(result => {
+// console.log('Data is saved');
+}).catch(e => {
+ console.log("error: " + e);
+});
   this.storage.get('distancetowater').then((val) => {
 
-    console.log('distancetowater', val);
     this.distancetowater_val=val;
-    console.log('secchi depth', (this.reappear_val-this.distancetowater_val));
     this.secchi_depth=this.reappear_val-this.distancetowater_val;
-    this.colourathalfdepth=(this.secchi_depth/2)+this.distancetowater_val;
+    this.halfdepth=(this.secchi_depth/2)+this.distancetowater_val;
   });
 
-
-
-  // secchi depth is reappear-distance to water
-
-
-
-
-  
 
 
 

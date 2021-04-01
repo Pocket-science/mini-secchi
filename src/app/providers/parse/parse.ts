@@ -35,12 +35,17 @@ export class ParseProvider {
   }
 
   public addGameScore(newScore): Promise<any> {
-    const GameScore = Parse.Object.extend('Secchi_data');
+    const GameScore = Parse.Object.extend('secchi_data');
     
     let gameScore = new GameScore();
-    gameScore.set('score', parseInt(newScore.score));
-    gameScore.set('playerName', newScore.playerName);
-    gameScore.set('cheatMode', false);
+    gameScore.set('latitude', (newScore.latitude));
+    gameScore.set('longitude',(newScore.longitude));
+    gameScore.set('distancetowater', newScore.distancetowater);
+    gameScore.set('reappear', newScore.reappear);
+    gameScore.set('colourathalfdepth', newScore.colourathalfdepth);
+    gameScore.set('colouratsurface', newScore.colouratsurface);
+    gameScore.set('datetimerecorded', newScore.datetimerecorded);
+
 
     return gameScore.save(null, {
       success: function (gameScore) {
