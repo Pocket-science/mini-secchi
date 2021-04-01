@@ -24,12 +24,26 @@ addPhotoToGallery() {
 
     await this.storage.create();
 
+
+
+
+
   this.storage.get('reappear').then((val) => {
 
     console.log('reappear', val);
     this.reappear_val=val;
 
   });
+
+
+  this.storage.get('distancetowater').then((val) => {
+
+    this.distancetowater_val=val;
+    this.secchi_depth=this.reappear_val-this.distancetowater_val;
+    this.halfdepth=(this.secchi_depth/2)+this.distancetowater_val;
+  });
+
+
 
 
 }
@@ -42,12 +56,6 @@ this.storage.set('colourathalfdepth', this.colourathalfdepth).then(result => {
 }).catch(e => {
  console.log("error: " + e);
 });
-  this.storage.get('distancetowater').then((val) => {
-
-    this.distancetowater_val=val;
-    this.secchi_depth=this.reappear_val-this.distancetowater_val;
-    this.halfdepth=(this.secchi_depth/2)+this.distancetowater_val;
-  });
 
 
 

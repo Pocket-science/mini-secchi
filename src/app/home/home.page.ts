@@ -52,7 +52,7 @@ console.log("error: " + e);
 
 
   async ngOnInit() {
-
+await this.storage.create();
     // clear the storage when submitted
     await this.storage.clear();
  }
