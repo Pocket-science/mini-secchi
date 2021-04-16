@@ -40,7 +40,10 @@ addPhotoToGallery() {
 
     this.distancetowater_val=val;
     this.secchi_depth=this.reappear_val-this.distancetowater_val;
-    this.halfdepth=(this.secchi_depth/2)+this.distancetowater_val;
+
+
+    this.halfdepth=this.distancetowater_val+(this.distancetowater_val-this.reappear_val)/2;
+
   });
 
 
