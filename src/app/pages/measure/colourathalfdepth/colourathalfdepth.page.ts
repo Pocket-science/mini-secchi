@@ -1,24 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
-import { PhotoService } from '../../../services/photo.service';
+import { Plugins, CameraResultType } from '@capacitor/core';
+
+const { Camera } = Plugins;
 
 @Component({
   selector: 'app-colourathalfdepth',
   templateUrl: './colourathalfdepth.page.html',
   styleUrls: ['./colourathalfdepth.page.scss'],
 })
+
 export class ColourathalfdepthPage implements OnInit {
 public reappear_val:number;
 public distancetowater_val: number;
 public secchi_depth:number;
 public colourathalfdepth:number;
 public halfdepth:number;
+public PictureTaken:string;
 
 
-  constructor(private storage: Storage, public photoService: PhotoService) { }
-addPhotoToGallery() {
-  this.photoService.addNewToGallery();
-}
+
+  constructor(private storage: Storage) { }
+
+
+
   async ngOnInit() {
 
 
@@ -51,6 +56,33 @@ addPhotoToGallery() {
 
 
 }
+
+
+
+
+
+async takePicture() {
+  try {
+    const Picture = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Base64,
+    });
+    this.PictureTaken = "data:image/jpeg;base64," + Picture.base64String;
+   this.storage.set('colourathalfdepthimage', Picture.base64String).then(result => {
+console.log('Data is saved');
+}).catch(e => {
+console.log("error: " + e);
+});
+
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
+
   async validate() {
   //  alert(`hola ${this.distancetowater}!`);
     await this.storage.create();
@@ -60,8 +92,6 @@ this.storage.set('colourathalfdepth', this.colourathalfdepth).then(result => {
 }).catch(e => {
  console.log("error: " + e);
 });
-
-
 
 
 

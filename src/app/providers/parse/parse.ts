@@ -35,7 +35,7 @@ export class ParseProvider {
   }
 
   public addGameScore(newScore): Promise<any> {
-    const GameScore = Parse.Object.extend('secchi_data');
+    const GameScore = Parse.Object.extend('secchi_data2');
     
     let gameScore = new GameScore();
     gameScore.set('latitude', (newScore.latitude));
@@ -44,6 +44,11 @@ export class ParseProvider {
     gameScore.set('reappear', newScore.reappear);
     gameScore.set('colourathalfdepth', newScore.colourathalfdepth);
     gameScore.set('colouratsurface', newScore.colouratsurface);
+
+    gameScore.set('colourathalfdepthimage', newScore.colourathalfdepthimage);
+    gameScore.set('colouratsurfaceimage', newScore.colouratsurfaceimage);
+
+
     gameScore.set('datetimerecorded', newScore.datetimerecorded);
 
 

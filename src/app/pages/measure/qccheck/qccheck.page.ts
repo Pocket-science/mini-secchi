@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
+
 
 @Component({
   selector: 'app-qccheck',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QccheckPage implements OnInit {
 
-  constructor() { }
-
+constructor(private storage: Storage) {}
   ngOnInit() {
+
+     this.storage.create();
+
   }
 
 }

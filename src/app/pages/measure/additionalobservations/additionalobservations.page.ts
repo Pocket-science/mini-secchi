@@ -16,10 +16,16 @@ public longitude: number;
 public distancetowater: number;
 public reappear: number;
 public colourathalfdepth: number;
+
+public colourathalfdepthimage: string;
+
 public colouratsurface: number;
+
+public colouratsurfaceimage: string;
+
 public datetime: Date;
 
-  newScore = {  latitude: null, longitude: null, distancetowater: null, reappear: null, colourathalfdepth: null, colouratsurface: null, datetimerecorded: null };
+  newScore = {  latitude: null, longitude: null, distancetowater: null, reappear: null, colourathalfdepth: null, colourathalfdepthimage: null, colouratsurface: null, colouratsurfaceimage: null, datetimerecorded: null };
   gameScores = [];
 
   constructor(private storage: Storage, private parseProvider: ParseProvider) { }
@@ -61,9 +67,16 @@ this.colourathalfdepth= val;
 
   });
 
-    this.storage.get('colouratsurface').then((val) => {
+        this.storage.get('colourathalfdepthimage').then((val) => {
 
-this.colouratsurface= val;
+this.colourathalfdepthimage= val;
+
+  });
+
+
+    this.storage.get('colouratsurfaceimage').then((val) => {
+
+this.colouratsurfaceimage= val;
 
   });
 
@@ -83,8 +96,16 @@ this.newScore.latitude=this.latitude;
 this.newScore.longitude=this.longitude;
 this.newScore.distancetowater=this.distancetowater;
 this.newScore.reappear=this.reappear;
+
 this.newScore.colourathalfdepth=this.colourathalfdepth;
+this.newScore.colourathalfdepthimage=this.colourathalfdepthimage;
+
 this.newScore.colouratsurface=this.colouratsurface;
+this.newScore.colouratsurfaceimage=this.colouratsurfaceimage;
+
+
+
+
 this.newScore.datetimerecorded=this.datetime.toString();
 
 
@@ -105,6 +126,8 @@ this.newScore.reappear=null;
 this.newScore.colourathalfdepth=null;
 this.newScore.colouratsurface=null;
 
+this.newScore.colourathalfdepthimage=null;
+this.newScore.colouratsurfaceimage=null;
 
 
       this.newScore.longitude = null;

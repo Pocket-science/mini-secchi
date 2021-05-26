@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PhotoService } from '../../../services/photo.service';
 import { Storage } from '@ionic/storage-angular';
+import { Plugins, CameraResultType } from '@capacitor/core';
+
+const { Camera } = Plugins;
 
 
 @Component({
@@ -10,20 +12,44 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class ColouratsurfacePage implements OnInit {
 	public colouratsurface:number;
-  newScore = { playerName: null, score: null };
-  gameScores = [];
+public PictureTaken:string;
 
 
 
-  constructor(private storage: Storage, public photoService: PhotoService) { }
-addPhotoToGallery() {
-  this.photoService.addNewToGallery();
-}
+  constructor(private storage: Storage) { }
   async ngOnInit() {
 
 
 
 }
+
+
+
+
+async takePicture() {
+  try {
+    const Picture = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Base64,
+    });
+    this.PictureTaken = "data:image/jpeg;base64," + Picture.base64String;
+   this.storage.set('colouratsurfaceimage', Picture.base64String).then(result => {
+console.log('Data is saved');
+}).catch(e => {
+console.log("error: " + e);
+});
+
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
+
+
+
   async validate() {
     await this.storage.create();
 

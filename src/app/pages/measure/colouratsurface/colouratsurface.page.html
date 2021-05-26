@@ -14,16 +14,6 @@
 Surface color: take a picture of the water surface (without the disk)
 
 
-   <ion-grid>
-    <ion-row>
-    <ion-col size="6" 
-      *ngFor="let photo of photoService.photos; index as position">
-        <ion-img [src]="photo.webviewPath"></ion-img>
-        {{photo.webviewPath}}
-    </ion-col>
-    </ion-row>
-  </ion-grid>
-
 
 
  <ion-label>Colour at surface(1-21):</ion-label>
@@ -35,11 +25,12 @@ Surface color: take a picture of the water surface (without the disk)
 
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="addPhotoToGallery()">
+    <ion-fab-button (click)="takePicture()">
       <ion-icon name="camera"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
+<img [src]="this.PictureTaken"/>
 
 
  <ion-button expand="block"  (click)="validate()" routerLink="/measure/qccheck" routerDirection="forward">
