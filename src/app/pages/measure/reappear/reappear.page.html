@@ -10,11 +10,15 @@
 </ion-header>
 
 <ion-content>
-Lower the disk until it disappears. Raise the disk and record the distance at which it re-appears.
+<ion-card> 
+Wind the spindle down until the Secchi disk disappears from sight. Wind it up again until the disk re-appears. <br>
+Note that the disk should be lowered straight down rather than at an angle. Adjust the weight if needed. <br>
+Record the length of the tape from the handheld device. The distance from the device to the water surface will be automatically subtracted.
+</ion-card>
 <ion-content><p>
 
 <ion-item>
-  <ion-label>Distance:</ion-label>
+  <ion-label>Distance to Secchi disk re-appearance in cm:</ion-label>
 
 <!-- Number type input -->
 <ion-input [(ngModel)]="reappear" type="number" inputmode="numeric" value="00"></ion-input></ion-item>

@@ -16,29 +16,25 @@
 .olour at half depth (opt. photo) (“optional: take a photo of the disk at half the secchi depth: X cm”) where X = distance to water (1.1) + ½ Zsd, so: 1.1 + 0.5(1.2.-1.1)
 
 -->
-  <ion-label  >Secchi depth: {{secchi_depth}}</ion-label> <br>
-
-
-  <ion-label  >Take a photo of the disk at half the secchi depth  and the distance to water: {{this.halfdepth}} cm</ion-label>
-
-
-  <!-- ion-fab markup  -->
-  <ion-label>Colour at half depth (1-21):</ion-label>
-  <ion-item>
-
+<ion-card>
+The Secchi depth is: {{secchi_depth}} cm <br>
+Raise the disk to half the Secchi disk depth: {{this.halfdepth}} cm
+Record the Forel-Ule colour of the disk at this depth (use the colour scale on the handheld device).
+ In addition, if it is safe to do so, take a photo of the disk in the water at this depth using the button at the bottom of this screen. 
+ The colour of the disk in the water is most similar to Forel-Ule colour number (1-21):</ion-card><ion-item>
 <ion-input [(ngModel)]="colourathalfdepth" type="number" inputmode="numeric" value="01"></ion-input></ion-item>
 
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="takePicture()">
+To add a photo click here:
+
+    <ion-button (click)="takePicture()">
       <ion-icon name="camera"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+    </ion-button>
 
 <img [src]="this.PictureTaken"/>
 
 
  <ion-button expand="block"  (click)="validate()"  routerLink="/measure/colouratsurface" routerDirection="forward">
- Step 4: Colour at surface
+ Step 4: Additional observations
  </ion-button>
 
 </ion-content>	
