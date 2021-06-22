@@ -48,6 +48,9 @@ export class ParseProvider {
     gameScore.set('colourathalfdepthimage', newScore.colourathalfdepthimage);
     gameScore.set('colouratsurfaceimage', newScore.colouratsurfaceimage);
 
+    gameScore.set('phvalue', newScore.phvalue);
+    gameScore.set('angle_estimated', newScore.angle_estimated);
+
 
     gameScore.set('datetimerecorded', newScore.datetimerecorded);
 

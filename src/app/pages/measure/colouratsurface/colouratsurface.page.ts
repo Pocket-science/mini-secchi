@@ -12,6 +12,8 @@ const { Camera } = Plugins;
 })
 export class ColouratsurfacePage implements OnInit {
 	public colouratsurface:number;
+  public phvalue:number;
+  public angle_estimated:number;
 public PictureTaken:string;
 
 
@@ -58,6 +60,21 @@ this.storage.set('colouratsurface', this.colouratsurface).then(result => {
 }).catch(e => {
  console.log("error: " + e);
 });
+
+
+this.storage.set('phvalue', this.phvalue).then(result => {
+// console.log('Data is saved');
+}).catch(e => {
+ console.log("error: " + e);
+});
+
+this.storage.set('angle_estimated', this.angle_estimated).then(result => {
+// console.log('Data is saved');
+}).catch(e => {
+ console.log("error: " + e);
+});
+
+
 
 
   }

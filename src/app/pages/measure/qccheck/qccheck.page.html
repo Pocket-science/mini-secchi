@@ -1,6 +1,6 @@
   <ion-header>
 <ion-toolbar>
-    <ion-title>5 Quality control checklist</ion-title>
+    <ion-title>5 Review measurement data </ion-title>
 
    <ion-buttons slot="start">
      <ion-back-button></ion-back-button>
@@ -13,13 +13,34 @@
 
 <ion-card>
 
-<ion-checkbox></ion-checkbox>&nbsp; <ion-label>Bottom visibilty</ion-label><p>
-<ion-checkbox></ion-checkbox>&nbsp; <ion-label>Reached end of tape/rope</ion-label><p>
 
+Latitude: {{this.latitude}}<br>
+Longitude: {{this.longitude}}<br>
+Distancetowater: {{this.distancetowater}} cm<br>
+Reappear: {{this.reappear}} cm<br>
+Colourathalfdepth: {{this.colourathalfdepth}} <br>
+Colouratsurface: {{this.colouratsurface}}<br>
+pH Value: {{this.phvalue}}<br>
+Estimated angle: {{this.angle_estimated}} degrees<br>
+
+Datetime: {{this.datetime}}<br>
+
+<br>
+
+
+Tip: wipe the Mini-Secchi disk tape dry after use so it does not stick.
+<p>
+Thank you for submitting a new mini-Secchi disk measurement!
 </ion-card>
 
- <ion-button expand="block" routerLink="/measure/additionalobservations" routerDirection="forward">
-Step 6: Additional observations
+<div *ngFor="let value of storageItems">
+    <h1>Val {{value.name}}</h1>
+</div>
+
+
+ <ion-button expand="block" (click)="validate()" routerLink="/home" routerDirection="root">Finish
+
+
  </ion-button>
 
 </ion-content>

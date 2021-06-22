@@ -11,30 +11,66 @@
 
 <ion-content>
 
-Surface color: take a picture of the water surface (without the disk)
+<ion-card>
+You can now wind up the Secchi disk mechanism.
+
+</ion-card>
+<ion-card>
+Acidity
+If you used pH paper, compare the colour of the pH strip to the pH colour index provided.
+</ion-card>
+ <ion-label> The pH value is (1-14):</ion-label>
+<ion-item>
+ <ion-input [(ngModel)]="phvalue" type="number" inputmode="numeric" value="1"></ion-input></ion-item>
 
 
 
 
- <ion-label>Colour at surface(1-21):</ion-label>
-  <ion-item>
+<ion-card>
+
+Surface water colour (photo and colour index)
+You can upload a photo of the colour of the water, avoiding reflections from the sun:
+Hold the camera 40-45 degrees from horizontal towards the water surface.
+With the sun straight at your back rotate 45 degrees to your left or your right to have the sun diagonally over your left or right shoulder.
+
+</ion-card>
+
+
+
+
+
+<ion-label>
+
+To add a photo click here:
+</ion-label>
+
+    <ion-button (click)="takePicture()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-button>
+
+<img [src]="this.PictureTaken"/>
+<p>
+
+<ion-label>Looking at the water surface in this direction, the colour of the water is most similar to Forel-Ule colour number (1-21):
+</ion-label>
+<ion-item>
 
 <ion-input [(ngModel)]="colouratsurface" type="number" inputmode="numeric" value="01"></ion-input></ion-item>
 
 
+<ion-card>
+Quality control check-list:<p>
+<ion-checkbox></ion-checkbox>&nbsp; <ion-label>The bottom was visible / the disk reached the bottom while I could still see it</ion-label><p>
+<ion-checkbox></ion-checkbox>&nbsp; <ion-label>I reached the end of the tape while I could still see the disk</ion-label><p>
 
+<ion-checkbox></ion-checkbox>&nbsp; <ion-label>I was not able to keep the disk going down at a straight angle. I estimate the angle at which I recorded the distance as <ion-input [(ngModel)]="angle_estimated" type="number" inputmode="numeric" value="01"> </ion-input> degrees from vertical</ion-label><p>
 
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="takePicture()">
-      <ion-icon name="camera"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+</ion-card>
 
-<img [src]="this.PictureTaken"/>
 
 
  <ion-button expand="block"  (click)="validate()" routerLink="/measure/qccheck" routerDirection="forward">
- Step 5: QC Checklist
+ Step 5: Review measurement data
  </ion-button>
 
 </ion-content>
