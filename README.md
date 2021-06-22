@@ -3,7 +3,8 @@ Small and simple app to support the Mini Secchi disk (basic calculations, image 
 
 # FUNDING
 
-![EU_logo](https://ec.europa.eu/easme/sites/easme-site/files/euflag.png)
+![EU_logo](https://europa.eu/european-union/sites/default/files/docs/body/flag_yellow_low.jpg)
+
 
 This project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 776480
 
