@@ -15,11 +15,8 @@ public longitude: number;
 public distancetowater: number;
 public reappear: number;
 public colourathalfdepth: number;
-
 public colourathalfdepthimage: string;
-
 public colouratsurface: number;
-
 public colouratsurfaceimage: string;
 public phvalue: number;
 public angle_estimated: number;
@@ -33,8 +30,9 @@ public datetime: Date;
   constructor(private storage: Storage, private parseProvider: ParseProvider) { }
 
   ngOnInit() {
+     this.storage.create();
 
- this.storage.create();
+
 
   this.storage.get('latitude').then((val) => {
 
@@ -155,28 +153,20 @@ this.postGameScore();
     this.parseProvider.addGameScore(this.newScore).then((gameScore) => {
       this.gameScores.push(gameScore);
 
-      this.newScore.datetimerecorded = null;
+this.newScore.datetimerecorded = null;
 this.newScore.distancetowater=null;
 this.newScore.reappear=null;
 this.newScore.colourathalfdepth=null;
 this.newScore.colouratsurface=null;
-
-
-
 this.newScore.colourathalfdepthimage=null;
 this.newScore.colouratsurfaceimage=null;
-
-
 this.newScore.phvalue=null;
 this.newScore.angle_estimated=null;
-
-
-
-      this.newScore.longitude = null;
-      this.newScore.latitude = null;
+this.newScore.longitude = null;
+this.newScore.latitude = null;
     }, (error) => {
       console.log(error);
-      alert('Error adding score.');
+      alert('Error adding data.');
     });
   }
 

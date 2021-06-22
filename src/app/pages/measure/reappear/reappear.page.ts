@@ -12,11 +12,12 @@ export class ReappearPage implements OnInit {
 
   constructor(private storage: Storage) { }
 
-  ngOnInit() {
+async  ngOnInit() {
+        await this.storage.create();
   }
 
     async validate() {
-    await this.storage.create();
+
 
 this.storage.set('reappear', this.reappear).then(result => {
 console.log('Data is saved');

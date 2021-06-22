@@ -11,14 +11,16 @@ export class DistancetowaterPage implements OnInit {
 
   constructor(private storage: Storage) { }
 
-  ngOnInit() {
+ async ngOnInit() {
+ 
+  await this.storage.create();
+
   }
 
 
 
   async validate() {
-  //  alert(`hola ${this.distancetowater}!`);
-    await this.storage.create();
+//   await this.storage.create();
 
 this.storage.set('distancetowater', this.distancetowater).then(result => {
 console.log('Data is saved');
@@ -31,7 +33,6 @@ console.log("error: " + e);
 
   });
 
-    // now save it to 
   }
 
 

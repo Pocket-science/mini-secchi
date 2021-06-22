@@ -14,12 +14,13 @@ export class ColouratsurfacePage implements OnInit {
 	public colouratsurface:number;
   public phvalue:number;
   public angle_estimated:number;
-public PictureTaken:string;
+public ColouratSurfacePictureTaken:string;
 
 
 
   constructor(private storage: Storage) { }
   async ngOnInit() {
+     this.storage.create();
 
 
 
@@ -33,9 +34,9 @@ async takePicture() {
     const Picture = await Camera.getPhoto({
       quality: 90,
       allowEditing: false,
-      resultType: CameraResultType.Base64,
+      resultType: CameraResultType.dataUrl,
     });
-    this.PictureTaken = "data:image/jpeg;base64," + Picture.base64String;
+    this.ColouratSurfacePictureTaken = "data:image/jpeg;base64," + Picture.base64String;
    this.storage.set('colouratsurfaceimage', Picture.base64String).then(result => {
 console.log('Data is saved');
 }).catch(e => {
@@ -53,7 +54,6 @@ console.log("error: " + e);
 
 
   async validate() {
-    await this.storage.create();
 
 this.storage.set('colouratsurface', this.colouratsurface).then(result => {
 // console.log('Data is saved');
