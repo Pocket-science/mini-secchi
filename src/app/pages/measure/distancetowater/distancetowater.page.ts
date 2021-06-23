@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+
 
 @Component({
   selector: 'app-distancetowater',
@@ -14,6 +16,12 @@ export class DistancetowaterPage implements OnInit {
  async ngOnInit() {
  
   await this.storage.create();
+
+
+
+
+
+
 
   }
 

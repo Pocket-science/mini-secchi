@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>2 Reappear</ion-title>
+    <ion-title>2 Disk reappearance</ion-title>
 
    <ion-buttons slot="start">
      <ion-back-button></ion-back-button>
@@ -15,13 +15,13 @@ Wind the spindle down until the Secchi disk disappears from sight. Wind it up ag
 Note that the disk should be lowered straight down rather than at an angle. Adjust the weight if needed. <br>
 Record the length of the tape from the handheld device. The distance from the device to the water surface will be automatically subtracted.
 </ion-card>
-<ion-content><p>
+<ion-content>
 
 <ion-item>
-  <ion-label>Distance to Secchi disk re-appearance in cm:</ion-label>
+  <ion-label>Distance to re-appearance:</ion-label>
 
 <!-- Number type input -->
-<ion-input [(ngModel)]="reappear" type="number" inputmode="numeric" value="00"></ion-input></ion-item>
+<ion-input [(ngModel)]="reappear" type="number" inputmode="numeric" value="00"></ion-input>cm</ion-item>
 
  <ion-button expand="block" (click)="validate()" routerLink="/measure/colourathalfdepth" routerDirection="forward">
  Step 3: Colour at half depth

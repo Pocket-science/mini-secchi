@@ -34,7 +34,7 @@ async takePicture() {
     const Picture = await Camera.getPhoto({
       quality: 90,
       allowEditing: false,
-      resultType: CameraResultType.dataUrl,
+      resultType: CameraResultType.Base64,
     });
     this.ColouratSurfacePictureTaken = "data:image/jpeg;base64," + Picture.base64String;
    this.storage.set('colouratsurfaceimage', Picture.base64String).then(result => {
