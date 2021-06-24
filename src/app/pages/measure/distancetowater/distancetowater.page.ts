@@ -11,7 +11,10 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 export class DistancetowaterPage implements OnInit {
   public distancetowater: number;
 
-  constructor(private storage: Storage) { }
+ myForm: FormGroup;
+  submitted = false;
+
+  constructor(private storage: Storage, public formBuilder: FormBuilder) { }
 
  async ngOnInit() {
  
@@ -28,7 +31,7 @@ export class DistancetowaterPage implements OnInit {
 
 
   async validate() {
-//   await this.storage.create();
+
 
 this.storage.set('distancetowater', this.distancetowater).then(result => {
 console.log('Data is saved');

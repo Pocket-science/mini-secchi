@@ -10,7 +10,8 @@
 </ion-header>
 
 <ion-content>
- 
+   <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
+
 <ion-card>
 
   <p>
@@ -29,4 +30,9 @@ Wind the disk down to the water surface and record the distance from the handhel
  <ion-button expand="block"  (click)="validate()" routerLink="/measure/reappear" routerDirection="forward">
  Step 2: Secchi disk re-appearing distance
  </ion-button>
+
+
+
+
+</form>
 </ion-content>
