@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 
 @Component({
@@ -11,18 +10,12 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 export class DistancetowaterPage implements OnInit {
   public distancetowater: number;
 
- myForm: FormGroup;
-  submitted = false;
+  constructor(private storage: Storage) { }
 
-  constructor(private storage: Storage, public formBuilder: FormBuilder) { }
 
  async ngOnInit() {
  
   await this.storage.create();
-
-
-
-
 
 
 

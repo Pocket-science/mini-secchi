@@ -1,9 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    signingConfigs {
+      debug {
+        storeFile file('/Users/norbertschmidt/Dropbox/My Mac (Norberts-Air.fritz.box)/Documents/mini_secchi_keystore')
+        storePassword 'blsae88'
+      }
+    }
+  compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "io.ionic.starter"
+        applicationId "nl.ddq.minisecchi"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -13,6 +19,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+          debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
