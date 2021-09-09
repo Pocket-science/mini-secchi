@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { QccheckPageRoutingModule } from './qccheck-routing.module';
+import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 
 import { QccheckPage } from './qccheck.page';
 

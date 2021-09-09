@@ -60,8 +60,8 @@ To add a photo click here:
 
 <ion-card>
 Quality control check-list:<p>
-<ion-checkbox></ion-checkbox>&nbsp; <ion-label>The bottom was visible / the disk reached the bottom while I could still see it</ion-label><p>
-<ion-checkbox></ion-checkbox>&nbsp; <ion-label>I reached the end of the tape while I could still see the disk</ion-label><p>
+<ion-checkbox [(ngModel)]="bottom_visible"></ion-checkbox>&nbsp; <ion-label>The bottom was visible / the disk reached the bottom while I could still see it</ion-label><p>
+<ion-checkbox [(ngModel)]="end_of_tape"></ion-checkbox>&nbsp; <ion-label>I reached the end of the tape while I could still see the disk</ion-label><p>
 
 <ion-checkbox></ion-checkbox>&nbsp; <ion-label>I was not able to keep the disk going down at a straight angle. I estimate the angle at which I recorded the distance as <ion-input [(ngModel)]="angle_estimated" type="number" inputmode="numeric" value="01"> </ion-input> degrees from vertical</ion-label><p>
 

@@ -2,8 +2,9 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
-      debug {
-        storeFile file('/Users/norbertschmidt/Dropbox/My Mac (Norberts-Air.fritz.box)/Documents/mini_secchi_keystore')
+
+      release {
+        storeFile file('/Users/norbertschmidt/Dropbox/My Mac (Norberts-Air.fritz.box)/Documents/mini_secchi_key/mini_secchi_keystore')
         storePassword 'blsae88'
       }
     }
@@ -19,7 +20,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-          debuggable false
+          debuggable true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
+
 import { Storage } from '@ionic/storage-angular';
 import { ParseProvider } from '../../../providers/parse/parse';
 
@@ -10,6 +12,7 @@ import { ParseProvider } from '../../../providers/parse/parse';
 })
 export class QccheckPage implements OnInit {
 // now get all the values
+public str_uid: string;
 public latitude: number;
 public longitude: number;
 public distancetowater: number;
@@ -19,18 +22,35 @@ public colourathalfdepthimage: string;
 public colouratsurface: number;
 public colouratsurfaceimage: string;
 public phvalue: number;
+public bottom_visible: string;
+public end_of_tape: string;
 public angle_estimated: number;
+
 
 
 public datetime: Date;
 
-  newScore = {  latitude: null, longitude: null, distancetowater: null, reappear: null, colourathalfdepth: null, colourathalfdepthimage: null, colouratsurface: null, colouratsurfaceimage: null, datetimerecorded: null, phvalue:null, angle_estimated:null };
+  newScore = {  uid: null, latitude: null, longitude: null, distancetowater: null, reappear: null, colourathalfdepth: null, colourathalfdepthimage: null, colouratsurface: null, colouratsurfaceimage: null, datetimerecorded: null, bottom_visible:null, end_of_tape:null, phvalue:null, angle_estimated:null };
   gameScores = [];
 
-  constructor(private storage: Storage, private parseProvider: ParseProvider) { }
+  constructor(private storage: Storage, private parseProvider: ParseProvider, private uniqueDeviceID: UniqueDeviceID) { }
 
   ngOnInit() {
      this.storage.create();
+
+
+// get unique device ID
+this.uniqueDeviceID.get()
+      .then((uuid: any) => {
+        console.log(uuid);
+        this.str_uid = uuid;
+      })
+      .catch((error: any) => {
+        console.log(error);
+        this.str_uid = "Error! ${error}";
+      });
+
+
 
 
 
@@ -102,6 +122,20 @@ this.phvalue= val;
 
 
 
+    this.storage.get('bottom_visible').then((val) => {
+
+this.bottom_visible= val;
+
+  });
+
+    this.storage.get('end_of_tape').then((val) => {
+
+this.end_of_tape= val;
+
+  });
+
+
+
 
     this.storage.get('angle_estimated').then((val) => {
 
@@ -123,25 +157,21 @@ this.datetime=new Date();
 
 // Send data to Parse server
 
+
+this.newScore.uid=this.str_uid;
 this.newScore.latitude=this.latitude;
 this.newScore.longitude=this.longitude;
 this.newScore.distancetowater=this.distancetowater;
 this.newScore.reappear=this.reappear;
-
 this.newScore.colourathalfdepth=this.colourathalfdepth;
 this.newScore.colourathalfdepthimage=this.colourathalfdepthimage;
-
 this.newScore.colouratsurface=this.colouratsurface;
 this.newScore.colouratsurfaceimage=this.colouratsurfaceimage;
-
 this.newScore.phvalue=this.phvalue;
-
+this.newScore.bottom_visible=this.bottom_visible;
+this.newScore.end_of_tape=this.end_of_tape;
 this.newScore.angle_estimated=this.angle_estimated;
-
-
-this.newScore.datetimerecorded=this.datetime.toString();
-
-
+this.newScore.datetimerecorded=this.datetime.toISOString();
 this.postGameScore();
 
 
@@ -152,7 +182,7 @@ this.postGameScore();
  public postGameScore() {
     this.parseProvider.addGameScore(this.newScore).then((gameScore) => {
       this.gameScores.push(gameScore);
-
+this.newScore.uid=null;
 this.newScore.datetimerecorded = null;
 this.newScore.distancetowater=null;
 this.newScore.reappear=null;
@@ -161,6 +191,8 @@ this.newScore.colouratsurface=null;
 this.newScore.colourathalfdepthimage=null;
 this.newScore.colouratsurfaceimage=null;
 this.newScore.phvalue=null;
+this.newScore.bottom_visible=null;
+this.newScore.end_of_tape=null;
 this.newScore.angle_estimated=null;
 this.newScore.longitude = null;
 this.newScore.latitude = null;
