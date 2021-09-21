@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { InspectdataPageRoutingModule } from './inspectdata-routing.module';
 
 import { InspectdataPage } from './inspectdata.page';
-import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 
 
 @NgModule({

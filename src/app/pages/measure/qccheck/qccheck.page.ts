@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
-
 import { Storage } from '@ionic/storage-angular';
 import { ParseProvider } from '../../../providers/parse/parse';
+
 
 
 @Component({
@@ -12,7 +11,6 @@ import { ParseProvider } from '../../../providers/parse/parse';
 })
 export class QccheckPage implements OnInit {
 // now get all the values
-public str_uid: string;
 public latitude: number;
 public longitude: number;
 public distancetowater: number;
@@ -25,35 +23,19 @@ public phvalue: number;
 public bottom_visible: string;
 public end_of_tape: string;
 public angle_estimated: number;
-
-
-
 public datetime: Date;
 
   newScore = {  uid: null, latitude: null, longitude: null, distancetowater: null, reappear: null, colourathalfdepth: null, colourathalfdepthimage: null, colouratsurface: null, colouratsurfaceimage: null, datetimerecorded: null, bottom_visible:null, end_of_tape:null, phvalue:null, angle_estimated:null };
   gameScores = [];
 
-  constructor(private storage: Storage, private parseProvider: ParseProvider, private uniqueDeviceID: UniqueDeviceID) { }
+  constructor(private storage: Storage, private parseProvider: ParseProvider) {  
+}
+
+
+
 
   ngOnInit() {
      this.storage.create();
-
-
-// get unique device ID
-this.uniqueDeviceID.get()
-      .then((uuid: any) => {
-        console.log(uuid);
-        this.str_uid = uuid;
-      })
-      .catch((error: any) => {
-        console.log(error);
-        this.str_uid = "Error! ${error}";
-      });
-
-
-
-
-
   this.storage.get('latitude').then((val) => {
 
 this.latitude= val;
@@ -158,7 +140,7 @@ this.datetime=new Date();
 // Send data to Parse server
 
 
-this.newScore.uid=this.str_uid;
+this.newScore.uid= "";
 this.newScore.latitude=this.latitude;
 this.newScore.longitude=this.longitude;
 this.newScore.distancetowater=this.distancetowater;

@@ -3,7 +3,6 @@ import { Storage } from '@ionic/storage-angular';
 import { Geolocation} from '@capacitor/core';
 
 
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -20,10 +19,19 @@ export class HomePage {
   this.getLocation();
   }
 
+
+
+
+
+
   async getLocation() {
   const position = await Geolocation.getCurrentPosition();
   this.latitude = position.coords.latitude;
   this.longitude = position.coords.longitude;
+
+
+
+
 
 
 // store GPS info
@@ -52,6 +60,11 @@ console.log("error: " + e);
 
 
   async ngOnInit() {
+
+
+
+
+
 await this.storage.create();
     // clear the storage when submitted
     await this.storage.clear();

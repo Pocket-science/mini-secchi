@@ -6,7 +6,6 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ParseProvider } from './providers/parse/parse';
-import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 
 
 @NgModule({
@@ -14,7 +13,7 @@ import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), IonicStorageModule.forRoot()
 , AppRoutingModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },    ParseProvider,UniqueDeviceID],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },    ParseProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -53,6 +53,8 @@ export class ParseProvider {
     gameScore.set('angle_estimated', newScore.angle_estimated);
     gameScore.set('datetimerecorded', newScore.datetimerecorded);
 
+ 
+
 
     return gameScore.save(null, {
       success: function (gameScore) {

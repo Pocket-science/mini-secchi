@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 
 import { IonicModule } from '@ionic/angular';
 
