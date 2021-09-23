@@ -1,9 +1,15 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>step4</ion-title>
+       <ion-buttons slot="start">
+     <ion-back-button></ion-back-button>
+   </ion-buttons>
+
   </ion-toolbar>
+  
 </ion-header>
 
 <ion-content>
-
+ <ion-button expand="block" (click)="validate()" routerLink="/home" routerDirection="root">Finish
+</ion-button>
 </ion-content>

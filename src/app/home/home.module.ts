@@ -6,6 +6,8 @@ import { HomePage } from './home.page';
 import { Storage } from '@ionic/storage-angular';
 import { HomePageRoutingModule } from './home-routing.module';
 
+import { AppVersion } from '@ionic-native/app-version';
+
 
 @NgModule({
   imports: [

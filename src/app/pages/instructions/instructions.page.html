@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Instructions</ion-title>
+
+   <ion-buttons slot="start">
+     <ion-back-button></ion-back-button>
+   </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
@@ -9,6 +14,10 @@ Attach (optional) pH Strip
 <img src="assets/img/attachph.png"><br>
 
 
-   <button ion-button (click)="volgende()">Next</button>
+    <ion-button expand="block"  (click)="validate()" routerLink="/instructions/step2" routerDirection="forward" >
+ Step 2
+ </ion-button>
+
+
 
 </ion-content>

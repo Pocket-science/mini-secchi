@@ -1,9 +1,20 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>step2</ion-title>
+    <ion-title>Instructions</ion-title>
+
+   <ion-buttons slot="start">
+     <ion-back-button></ion-back-button>
+   </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+    <ion-button expand="block"  (click)="validate()" routerLink="/instructions/step3" routerDirection="forward" >
+ Step 3
+ </ion-button>
+
+
 
 </ion-content>

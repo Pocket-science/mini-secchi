@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { ParseProvider } from '../../../providers/parse/parse';
+import { Guid } from "guid-typescript";
 
 
 
@@ -24,12 +25,17 @@ public bottom_visible: string;
 public end_of_tape: string;
 public angle_estimated: number;
 public datetime: Date;
+public rec_uid: string;
 
   newScore = {  uid: null, latitude: null, longitude: null, distancetowater: null, reappear: null, colourathalfdepth: null, colourathalfdepthimage: null, colouratsurface: null, colouratsurfaceimage: null, datetimerecorded: null, bottom_visible:null, end_of_tape:null, phvalue:null, angle_estimated:null };
   gameScores = [];
 
   constructor(private storage: Storage, private parseProvider: ParseProvider) {  
+
+    this.rec_uid = Guid.raw(); // make it a string
+
 }
+
 
 
 
@@ -140,7 +146,7 @@ this.datetime=new Date();
 // Send data to Parse server
 
 
-this.newScore.uid= "";
+this.newScore.uid= this.rec_uid;
 this.newScore.latitude=this.latitude;
 this.newScore.longitude=this.longitude;
 this.newScore.distancetowater=this.distancetowater;

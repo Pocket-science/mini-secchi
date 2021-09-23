@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { Geolocation} from '@capacitor/geolocation';
+import { AppVersion } from '@ionic-native/app-version/ngx';
 
 
 @Component({
@@ -12,11 +13,26 @@ export class HomePage {
 
   latitude: number;
   longitude: number;
+  AppName:string;
+  PackageName:string;
+  VersionCode:string|number;
+  VersionNumber:string;
 
 
-
-  constructor(private storage: Storage) {
+  constructor(private storage: Storage, private appVersion: AppVersion) {
   this.getLocation();
+
+     this.appVersion.getVersionCode().then(value => {
+      this.VersionCode = value;
+    }).catch(err => {
+      alert(err);
+    });
+    this.appVersion.getVersionNumber().then(value => {
+      this.VersionNumber = value;
+    }).catch(err => {
+      alert(err);
+    });
+    
   }
 
 
