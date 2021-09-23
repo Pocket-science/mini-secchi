@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
-import { Plugins, CameraResultType } from '@capacitor/core';
+import { Plugins } from '@capacitor/core';
+import { CameraResultType } from '@capacitor/camera';
+
 
 const { Camera } = Plugins;
 

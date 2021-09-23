@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
-import { Geolocation} from '@capacitor/core';
+import { Geolocation} from '@capacitor/geolocation';
 
 
 @Component({
