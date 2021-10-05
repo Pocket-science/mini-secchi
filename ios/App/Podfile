@@ -12,6 +12,7 @@ def capacitor_pods
   pod 'CapacitorCamera', :path => '../../node_modules/@capacitor/camera'
   pod 'CapacitorFilesystem', :path => '../../node_modules/@capacitor/filesystem'
   pod 'CapacitorGeolocation', :path => '../../node_modules/@capacitor/geolocation'
+  pod 'CapacitorPushNotifications', :path => '../../node_modules/@capacitor/push-notifications'
   pod 'CapacitorStorage', :path => '../../node_modules/@capacitor/storage'
   pod 'CapacitorSqlite', :path => '../../node_modules/capacitor-sqlite'
   pod 'CordovaPlugins', :path => '../capacitor-cordova-ios-plugins'

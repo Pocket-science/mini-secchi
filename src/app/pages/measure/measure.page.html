@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>New observation</ion-title>
+    <ion-title>Safety first</ion-title>
   
    <ion-buttons slot="start">
      <ion-back-button></ion-back-button>
@@ -11,14 +11,30 @@
 </ion-header>
 
 <ion-content>
-<ion-card>
-<p>Safety first: work from a stable platform, wear a life vest and make sure someone knows where you are. Only upload photos if you can do so without risking your safety and your phone.</p><p>
-Find a spot where you can look into the water, away from sun reflections. Record Secchi depth, water colour and pH without sunglasses.
-If you have pH paper, clip a new section into the provided clip and attach it to the disk.</p>
-</ion-card>
- <ion-button expand="block" routerLink="/measure/distancetowater" routerDirection="forward">
-  Step 1: Measure distance to water
- </ion-button>
 
+  <ion-item>
+    <ion-label>  <ion-icon name="warning-outline"></ion-icon>
+Safety first</ion-label>
+  </ion-item>
+<ion-item>
+
+
+Work from a stable platform, wear a life vest and make sure someone knows where you are. Only upload photos if you can do so without risking your safety and your phone.
+Find a spot where you can look into the water, away from sun reflections. Record Secchi depth, water colour and pH without sunglasses.
+<br>
+If you have pH paper, clip a new section into the provided clip and attach it to the disk.
+
+</ion-item>
+
+<br>
+<ion-item>
+<img src="assets/img/attachph.png">
+</ion-item>
+
+
+
+ <ion-button expand="block" routerLink="/measure/distancetowater" routerDirection="forward">
+  Go to step 1
+   </ion-button>
 
 </ion-content>

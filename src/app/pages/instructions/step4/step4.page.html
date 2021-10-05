@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>step4</ion-title>
+    <ion-title>4. Color of the water</ion-title>
        <ion-buttons slot="start">
      <ion-back-button></ion-back-button>
    </ion-buttons>
@@ -10,6 +10,25 @@
 </ion-header>
 
 <ion-content>
- <ion-button expand="block" (click)="validate()" routerLink="/home" routerDirection="root">Finish
+  <ion-item>
+
+
+Colour of the water surface
+Estimate the Forel-Ule colour scale by looking at the water surface, away from sun glitter.
+</ion-item>
+<ion-item>
+
+<img src="assets/img/bodypos.png"><br>
+</ion-item>
+
+
+<ion-item>
+
+Keeping the sun diagonally behind you over your left or right shoulder, look down and forward to the water surface (40-45 degrees) and compare the colour of the water to the Forel-Ule index. Optionally upload another photo using the same viewing angles.</ion-item>
+<img src="assets/img/forelule.png"><br>
+    <ion-button expand="block"  (click)="validate()" routerLink="/instructions/step5" routerDirection="forward" >
+
+
+Step 5
 </ion-button>
 </ion-content>

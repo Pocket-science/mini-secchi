@@ -22,6 +22,7 @@ export class HomePage {
   constructor(private storage: Storage, private appVersion: AppVersion) {
   this.getLocation();
 
+
      this.appVersion.getVersionCode().then(value => {
       this.VersionCode = value;
     }).catch(err => {

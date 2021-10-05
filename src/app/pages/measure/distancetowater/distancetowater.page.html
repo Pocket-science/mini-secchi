@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>1 Distance to water</ion-title>
+    <ion-title>Distance to water</ion-title>
 
    <ion-buttons slot="start">
      <ion-back-button></ion-back-button>
@@ -10,27 +10,21 @@
 </ion-header>
 
 <ion-content>
-
-
-
-
-<ion-card>
-
-  <p>
-Wind the disk down to the water surface and record the distance from the handheld device to the water surface. Keep your arm at the same distance from the water for the remaining depth measurements.
- 
-</p>
-</ion-card>
 <ion-item>
-  <ion-label>Distance to water:</ion-label>
+Wind the disk down to the water surface and record the distance from the handheld device to the water surface. Keep your arm at the same distance from the water for the remaining depth measurements.
+</ion-item>
 
-<!-- Number type input -->
- <ion-input [(ngModel)]="distancetowater" type="number" #nameCtrl="ngModel" inputmode="numeric" value="00" min="0" max="100"  ></ion-input>cm</ion-item>
+<img src="assets/img/distancetowater.png"><br>
+
+<ion-item>
+  <ion-label>Distance to water:</ion-label></ion-item>
+  <ion-item>
+ <ion-input [(ngModel)]="distancetowater" type="number" #nameCtrl="ngModel" inputmode="numeric" value="00" min="0" max="200" required="true"  placeholder="Enter distance here"></ion-input>cm</ion-item>
 
 
 
  <ion-button expand="block"  (click)="validate()" routerLink="/measure/reappear" routerDirection="forward" >
- Step 2: Secchi disk re-appearing distance
+ Go to step 2
  </ion-button>
 
 
