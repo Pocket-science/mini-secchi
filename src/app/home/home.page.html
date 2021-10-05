@@ -14,6 +14,11 @@
   </ion-header>
 <ion-content padding>
 
+
+<ion-item>
+<img src="assets/img/secchidisk.png"><br>
+</ion-item>
+
  <ion-button shape="round"  expand="block" routerLink="/measure"  strong="true" routerDirection="forward" color="white" style="background-image: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(86,143,150) 25%,   rgba(123,166,84) 35%, rgba(149,182,69) 50%, rgba(173,181,95) 70%, rgba(161,77,4) 100%)" >
    New observation
  </ion-button>
@@ -34,33 +39,11 @@
 
 
 
+        <ion-item><ion-label>Mini Secchi app version {{ VersionCode }},{{ VersionNumber }}</ion-label></ion-item>
 
 
-</ion-content>
-
-  <div id="container">
-        <ion-item>VersionCode: {{ VersionCode }}</ion-item>
-    <ion-item>VersionNumber: {{ VersionNumber }}</ion-item>
-<!---
-    <ion-item>Latitude: {{ latitude }}</ion-item>
-    <ion-item>Longitude: {{ longitude }}</ion-item>
 
 
-<ion-card>
-  <ion-card-header>
-    <ion-card-title>Coordinates (testing purpose)</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-    <ion-item>Latitude: {{ latitude }}</ion-item>
-    <ion-item>Longitude: {{ longitude }}</ion-item>
-  </ion-card-content>
-</ion-card>
--->
-
-<p>
 
 
-</p>
-
-  </div>
 </ion-content>
