@@ -23,14 +23,22 @@ const routes: Routes = [
     path: 'moreinfo',
     loadChildren: () => import('./pages/moreinfo/moreinfo.module').then( m => m.MoreinfoPageModule)
   },
+ 
   {
-    path: 'inspectdata',
-    loadChildren: () => import('./pages/inspectdata/inspectdata.module').then( m => m.InspectdataPageModule)
+    path: 'login',
+    loadChildren: () => import('./pages/auth/login/login.module').then( m => m.LoginPageModule)
   },
+
   {
-    path: 'userprofile',
-    loadChildren: () => import('./pages/userprofile/userprofile.module').then( m => m.UserprofilePageModule)
+    path: 'auth/signup',
+    loadChildren: () => import('./pages/auth/signup/signup.module').then( m => m.SignupPageModule)
   },
+
+  {
+    path: 'auth/forgot-password',
+    loadChildren: () => import('./pages/auth/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+  }
+
 
 
 

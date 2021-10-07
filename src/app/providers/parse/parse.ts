@@ -72,6 +72,7 @@ export class ParseProvider {
   private parseInitialize() {
     Parse.initialize(this.parseAppId, this.parseJSKey);
     Parse.serverURL = this.parseServerUrl;
+
     
   }
 

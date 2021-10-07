@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { Geolocation} from '@capacitor/geolocation';
 import { AppVersion } from '@ionic-native/app-version/ngx';
+import { ParseProvider } from '../providers/parse/parse';
 
 
 @Component({

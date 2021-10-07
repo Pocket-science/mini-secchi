@@ -13,8 +13,8 @@ android {
         applicationId "nl.ddq.minisecchi"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 6
-        versionName "Zero six"
+        versionCode 7
+        versionName "Zero seven"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

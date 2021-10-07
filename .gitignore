@@ -12,8 +12,13 @@
 Thumbs.db
 UserInterfaceState.xcuserstate
 $RECYCLE.BIN/
+
 *.constant.ts
+*.constant_mobis.ts
+*.constant_pml.ts
 *.log
+*.environment.ts
+*.environment.prod.ts
 log.txt
 npm-debug.log*
 
