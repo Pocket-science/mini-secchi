@@ -2,12 +2,24 @@
 <widget version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <access origin="*" />
   
+  <feature name="CordovaHttpPlugin">
+    <param name="ios-package" value="CordovaHttpPlugin"/>
+  </feature>
+
   <feature name="AppVersion">
     <param name="ios-package" value="AppVersion"/>
   </feature>
 
   <feature name="Geolocation">
     <param name="ios-package" value="CDVLocation"/>
+  </feature>
+
+  <feature name="SafariViewController">
+    <param name="ios-package" value="SafariViewController"/>
+  </feature>
+
+  <feature name="SecureStorage">
+    <param name="ios-package" value="SecureStorage"/>
   </feature>
 
   <feature name="SQLitePlugin">

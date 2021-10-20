@@ -13,8 +13,8 @@ android {
         applicationId "nl.ddq.minisecchi"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 7
-        versionName "Zero seven"
+        versionCode 8
+        versionName "Edgy EGI"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

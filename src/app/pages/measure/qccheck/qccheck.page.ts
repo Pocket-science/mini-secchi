@@ -12,6 +12,10 @@ import { Guid } from "guid-typescript";
 })
 export class QccheckPage implements OnInit {
 // now get all the values
+
+public swversion_number:string;
+
+public swversion_code:string;
 public latitude: number;
 public longitude: number;
 public distancetowater: number;
@@ -25,9 +29,11 @@ public bottom_visible: string;
 public end_of_tape: string;
 public angle_estimated: number;
 public datetime: Date;
+public datetime_ux: string;
+
 public rec_uid: string;
 
-  newScore = {  uid: null, latitude: null, longitude: null, distancetowater: null, reappear: null, colourathalfdepth: null, colourathalfdepthimage: null, colouratsurface: null, colouratsurfaceimage: null, datetimerecorded: null, bottom_visible:null, end_of_tape:null, phvalue:null, angle_estimated:null };
+  newScore = {  uid: null, swversion_number:null, swversion_code:null, latitude: null,  longitude: null, distancetowater: null, reappear: null, colourathalfdepth: null, colourathalfdepthimage: null, colouratsurface: null, colouratsurfaceimage: null, datetimerecorded: null, datetime_ux:null, bottom_visible:null, end_of_tape:null, phvalue:null, angle_estimated:null };
   gameScores = [];
 
   constructor(private storage: Storage, private parseProvider: ParseProvider) {  
@@ -42,6 +48,25 @@ public rec_uid: string;
 
   ngOnInit() {
      this.storage.create();
+
+
+
+
+     
+  this.storage.get('swversion_number').then((val) => {
+
+this.swversion_number= val;
+
+  });
+
+  this.storage.get('swversion_code').then((val) => {
+
+this.swversion_code= val;
+
+  });
+
+
+
   this.storage.get('latitude').then((val) => {
 
 this.latitude= val;
@@ -132,12 +157,12 @@ this.angle_estimated= val;
   });
 
 
+let d = new Date();
 
+this.datetime=d;
 
-this.datetime=new Date();
-
-
-
+var unixTimeStamp = Math.floor(d.getTime() / 1000);
+this.datetime_ux=unixTimeStamp.toString();
   }
 
   async validate() {
@@ -146,6 +171,8 @@ this.datetime=new Date();
 // Send data to Parse server
 
 
+this.newScore.swversion_code=this.swversion_code;
+this.newScore.swversion_number=this.swversion_number;
 this.newScore.uid= this.rec_uid;
 this.newScore.latitude=this.latitude;
 this.newScore.longitude=this.longitude;
@@ -159,7 +186,9 @@ this.newScore.phvalue=this.phvalue;
 this.newScore.bottom_visible=this.bottom_visible;
 this.newScore.end_of_tape=this.end_of_tape;
 this.newScore.angle_estimated=this.angle_estimated;
+this.newScore.datetime_ux=this.datetime_ux.toString();
 this.newScore.datetimerecorded=this.datetime.toISOString();
+
 this.postGameScore();
 
 
@@ -170,8 +199,12 @@ this.postGameScore();
  public postGameScore() {
     this.parseProvider.addGameScore(this.newScore).then((gameScore) => {
       this.gameScores.push(gameScore);
+
+this.newScore.swversion_code=null;
+this.newScore.swversion_number=null;
 this.newScore.uid=null;
 this.newScore.datetimerecorded = null;
+this.newScore.datetime_ux = null;
 this.newScore.distancetowater=null;
 this.newScore.reappear=null;
 this.newScore.colourathalfdepth=null;

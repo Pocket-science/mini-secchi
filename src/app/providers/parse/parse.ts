@@ -39,6 +39,8 @@ export class ParseProvider {
     
     let gameScore = new GameScore();
     gameScore.set('uid', (newScore.uid));
+    gameScore.set('swversion_code', (newScore.swversion_code));
+    gameScore.set('swversion_number',(newScore.swversion_number));
     gameScore.set('latitude', (newScore.latitude));
     gameScore.set('longitude',(newScore.longitude));
     gameScore.set('distancetowater', newScore.distancetowater);
@@ -52,6 +54,7 @@ export class ParseProvider {
     gameScore.set('end_of_tape', newScore.end_of_tape);
     gameScore.set('angle_estimated', newScore.angle_estimated);
     gameScore.set('datetimerecorded', newScore.datetimerecorded);
+    gameScore.set('datetime_ux', newScore.datetime_ux);
 
  
 

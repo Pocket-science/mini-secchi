@@ -70,6 +70,17 @@ console.log("error: " + e);
 });
 
 
+this.storage.set('swversion_code', this.VersionCode).then(result => {
+console.log('Data is saved');
+}).catch(e => {
+console.log("error: " + e);
+});
+
+this.storage.set('swversion_number', this.VersionNumber).then(result => {
+console.log('Data is saved');
+}).catch(e => {
+console.log("error: " + e);
+});
 
 
 
