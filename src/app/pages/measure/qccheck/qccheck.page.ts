@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { ParseProvider } from '../../../providers/parse/parse';
 import { Guid } from "guid-typescript";
+import { Parse } from 'parse';
 
 
 
@@ -111,6 +112,14 @@ this.colouratsurface= val;
 
         this.storage.get('colourathalfdepthimage').then((val) => {
 
+
+// convert to Parse file
+   val = new Parse.File("colourathalfdepthimage.png",  { base64: val},"image/png");
+
+
+
+
+
 this.colourathalfdepthimage= val;
 
   });
@@ -118,7 +127,20 @@ this.colourathalfdepthimage= val;
 
     this.storage.get('colouratsurfaceimage').then((val) => {
 
+// convert to Parse file
+   val = new Parse.File("colouratsurfaceimage.png",  { base64: val},"image/png");
+
+
+
+
 this.colouratsurfaceimage= val;
+
+
+
+
+
+
+
 
   });
 

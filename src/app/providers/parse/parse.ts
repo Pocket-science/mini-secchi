@@ -35,7 +35,7 @@ export class ParseProvider {
   }
 
   public addGameScore(newScore): Promise<any> {
-    const GameScore = Parse.Object.extend('secchi_data2');
+    const GameScore = Parse.Object.extend('secchi_data4');
     
     let gameScore = new GameScore();
     gameScore.set('uid', (newScore.uid));

@@ -1,13 +1,6 @@
 {
-	"appId": "nl.ddq.minisecchi",
-	"appName": "MiniSecchi",
-	"bundledWebRuntime": false,
-	"npmClient": "npm",
+	"appId": "io.ionic.starter",
+	"appName": "Mini-Secchi",
 	"webDir": "www",
-	"plugins": {
-		"SplashScreen": {
-			"launchShowDuration": 0
-		}
-	},
-	"cordova": {}
+	"bundledWebRuntime": false
 }
