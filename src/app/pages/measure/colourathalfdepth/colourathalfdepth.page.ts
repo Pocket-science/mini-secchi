@@ -96,6 +96,14 @@ this.storage.set('colourathalfdepth', this.colourathalfdepth).then(result => {
 });
 
 
+this.storage.set('secchi_depth', this.secchi_depth).then(result => {
+// console.log('Data is saved');
+}).catch(e => {
+ console.log("error: " + e);
+});
+
+
+
 
 
   }

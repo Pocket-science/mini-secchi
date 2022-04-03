@@ -31,10 +31,12 @@ public end_of_tape: string;
 public angle_estimated: number;
 public datetime: Date;
 public datetime_ux: string;
+public secchi_depth: string;
+
 
 public rec_uid: string;
 
-  newScore = {  uid: null, swversion_number:null, swversion_code:null, latitude: null,  longitude: null, distancetowater: null, reappear: null, colourathalfdepth: null, colourathalfdepthimage: null, colouratsurface: null, colouratsurfaceimage: null, datetimerecorded: null, datetime_ux:null, bottom_visible:null, end_of_tape:null, phvalue:null, angle_estimated:null };
+  newScore = {  uid: null, swversion_number:null, swversion_code:null, latitude: null,  longitude: null, distancetowater: null, reappear: null, colourathalfdepth: null, colourathalfdepthimage: null, colouratsurface: null, colouratsurfaceimage: null, datetimerecorded: null, datetime_ux:null, bottom_visible:null, end_of_tape:null, phvalue:null, angle_estimated:null, secchi_depth:null };
   gameScores = [];
 
   constructor(private storage: Storage, private parseProvider: ParseProvider) {  
@@ -179,6 +181,13 @@ this.angle_estimated= val;
   });
 
 
+this.storage.get('secchi_depth').then((val) => {
+
+this.secchi_depth= val;
+
+  });
+
+
 let d = new Date();
 
 this.datetime=d;
@@ -208,8 +217,10 @@ this.newScore.phvalue=this.phvalue;
 this.newScore.bottom_visible=this.bottom_visible;
 this.newScore.end_of_tape=this.end_of_tape;
 this.newScore.angle_estimated=this.angle_estimated;
+this.newScore.secchi_depth=this.secchi_depth;
 this.newScore.datetime_ux=this.datetime_ux.toString();
 this.newScore.datetimerecorded=this.datetime.toISOString();
+
 
 this.postGameScore();
 
@@ -237,11 +248,12 @@ this.newScore.phvalue=null;
 this.newScore.bottom_visible=null;
 this.newScore.end_of_tape=null;
 this.newScore.angle_estimated=null;
+this.newScore.secchi_depth=null;
 this.newScore.longitude = null;
 this.newScore.latitude = null;
     }, (error) => {
       console.log(error);
-      alert('Error adding data.');
+      alert('Error adding data, check internet connection.');
     });
   }
 

@@ -53,8 +53,10 @@ export class ParseProvider {
     gameScore.set('bottom_visible', newScore.bottom_visible);
     gameScore.set('end_of_tape', newScore.end_of_tape);
     gameScore.set('angle_estimated', newScore.angle_estimated);
+    gameScore.set('secchi_depth', newScore.secchi_depth);
     gameScore.set('datetimerecorded', newScore.datetimerecorded);
     gameScore.set('datetime_ux', newScore.datetime_ux);
+
 
  
 

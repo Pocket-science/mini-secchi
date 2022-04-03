@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package nl.ddq.minisecchi;
 
 import com.getcapacitor.BridgeActivity;
 
