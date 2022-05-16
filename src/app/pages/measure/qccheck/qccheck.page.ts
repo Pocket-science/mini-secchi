@@ -15,8 +15,7 @@ export class QccheckPage implements OnInit {
 // now get all the values
 
 public swversion_number:string;
-
-public swversion_code:string;
+public swversion_code:number;
 public latitude: number;
 public longitude: number;
 public distancetowater: number;
@@ -202,8 +201,8 @@ this.datetime_ux=unixTimeStamp.toString();
 // Send data to Parse server
 
 
-this.newScore.swversion_code=this.swversion_code;
-this.newScore.swversion_number=this.swversion_number;
+this.newScore.swversion_code=Number(this.swversion_code); // this is a number!!
+this.newScore.swversion_number=this.swversion_number; //this is a string!
 this.newScore.uid= this.rec_uid;
 this.newScore.latitude=this.latitude;
 this.newScore.longitude=this.longitude;

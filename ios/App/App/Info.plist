@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
@@ -30,13 +30,13 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>The app would like to take pictures</string>
+	<string>The app would like to take pictures of the water colour and disk  depth to determine the forel ule and secchi depths</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>The app would like to use your location</string>
+	<string>The app would like to use your location for determining the location of the water body for research purposes</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>The app would like to add pictures to your photo library</string>
+	<string>The app would like to add the water pictures to your photo library</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>The app would like to add pictures to your photo library</string>
+	<string>The app would like to add the water  pictures to your photo library</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
