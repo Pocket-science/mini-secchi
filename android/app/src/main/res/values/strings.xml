@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">Mini-Secchi</string>
-    <string name="title_activity_main">Mini-Secchi</string>
-    <string name="package_name">nl.ddq.minisecchi</string>
-    <string name="custom_url_scheme">nl.ddq.minisecchi</string>
-</resources>
