@@ -1,11 +1,9 @@
-  <ion-header>
-<ion-toolbar>
-    <ion-title>Review</ion-title>
-
-   <ion-buttons slot="start">
-     <ion-back-button></ion-back-button>
-   </ion-buttons>
-
+<ion-header class="ion-no-border">
+  <ion-toolbar color="black">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" icon="chevron-back-outline" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Review</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -39,9 +37,6 @@ Tip: wipe the Mini-Secchi disk tape dry after use so it does not stick.
 <br>
 Thank you for submitting a new mini-Secchi disk measurement!
 </ion-item>
-<div *ngFor="let value of storageItems">
-    <h1>Val {{value.name}}</h1>
-</div>
 
 
  <ion-button expand="block" (click)="validate()" routerLink="/home" routerDirection="root">Finish
