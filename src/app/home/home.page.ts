@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { Geolocation} from '@capacitor/geolocation';
-import { ParseProvider } from '../providers/parse/parse';
 
 
 @Component({
@@ -41,7 +40,7 @@ export class HomePage {
 
 
 
-// store GPS info
+// store GPS info (latitude and longitude) as an initial fix
 await this.storage.create();
 
 
@@ -59,17 +58,6 @@ console.log("error: " + e);
 });
 
 
-this.storage.set('swversion_code', this.VersionCode).then(result => {
-console.log('Data is saved');
-}).catch(e => {
-console.log("error: " + e);
-});
-
-this.storage.set('swversion_number', this.VersionNumber).then(result => {
-console.log('Data is saved');
-}).catch(e => {
-console.log("error: " + e);
-});
 
 
 

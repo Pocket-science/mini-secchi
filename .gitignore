@@ -204,3 +204,9 @@ android-template/app/app.iml
 Carthage
 *.xcframework.zip
 www/*
+mini_secchi_key/mini_secchi_keystore
+mini_secchi_key/private_key.pepk
+mini_secchi_keystore
+
+resources/ios/**/*
+resources/android/**/*

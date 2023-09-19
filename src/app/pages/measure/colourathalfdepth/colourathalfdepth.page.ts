@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { Plugins } from '@capacitor/core';
 import {  CameraResultType } from '@capacitor/camera';
+import { Geolocation} from '@capacitor/geolocation';
 
 
 const { Camera } = Plugins;
@@ -19,7 +20,8 @@ public secchi_depth:number;
 public colourathalfdepth:number;
 public halfdepth:number;
 public PictureTaken:string;
-
+latitude: number;
+longitude: number;
 
 
   constructor(private storage: Storage) { }
@@ -30,8 +32,7 @@ public PictureTaken:string;
 
 
     await this.storage.create();
-
-
+    this.getLocation();
 
 
 
@@ -62,6 +63,38 @@ public PictureTaken:string;
 
 
 
+async getLocation() {
+  const position = await Geolocation.getCurrentPosition();
+  this.latitude = position.coords.latitude;
+  this.longitude = position.coords.longitude;
+
+
+
+
+
+
+// store GPS info. take second fix
+await this.storage.create();
+
+
+this.storage.set('latitude', this.latitude).then(result => {
+console.log('Data is saved');
+}).catch(e => {
+console.log("error: " + e);
+});
+  
+
+this.storage.set('longitude', this.longitude).then(result => {
+console.log('Data is saved');
+}).catch(e => {
+console.log("error: " + e);
+});
+
+
+
+
+
+}
 
 async takePicture() {
   try {
