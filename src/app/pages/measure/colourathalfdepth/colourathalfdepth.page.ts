@@ -64,10 +64,10 @@ longitude: number;
 
 
 async getLocation() {
-  const position = await Geolocation.getCurrentPosition();
+  const position = await Geolocation.getCurrentPosition({ enableHighAccuracy: true });
+
   this.latitude = position.coords.latitude;
   this.longitude = position.coords.longitude;
-
 
 
 
