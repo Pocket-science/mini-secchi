@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { Storage } from '@ionic/storage-angular';
-import { Geolocation} from '@capacitor/geolocation';
-
+import { Browser } from '@capacitor/browser';
 
 @Component({
   selector: 'app-home',
@@ -10,19 +8,15 @@ import { Geolocation} from '@capacitor/geolocation';
 })
 export class HomePage {
 
-  latitude: number;
-  longitude: number;
-  AppName:string;
-  PackageName:string;
-  VersionCode:string|number;
-  VersionNumber:string;
-
-
-  constructor(private storage: Storage) {
-  this.getLocation();
+  constructor() {
 
 
     
+  }
+
+  async openExternalWebsite() {
+    const url = 'https://rsg.pml.ac.uk/dashboards/d/P0tWxs97k/monocle-secchi?orgId=1&refresh=5m';
+    await Browser.open({ url });
   }
 
 
@@ -30,38 +24,9 @@ export class HomePage {
 
 
 
-  async getLocation() {
-  const position = await Geolocation.getCurrentPosition();
-  this.latitude = position.coords.latitude;
-  this.longitude = position.coords.longitude;
 
 
 
-
-
-
-// store GPS info (latitude and longitude) as an initial fix
-await this.storage.create();
-
-
-this.storage.set('latitude', this.latitude).then(result => {
-console.log('Data is saved');
-}).catch(e => {
-console.log("error: " + e);
-});
-  
-
-this.storage.set('longitude', this.longitude).then(result => {
-console.log('Data is saved');
-}).catch(e => {
-console.log("error: " + e);
-});
-
-
-
-
-
-}
 
 
 
@@ -71,14 +36,11 @@ console.log("error: " + e);
 
 
 
-await this.storage.create();
-    // clear the storage when submitted
-    await this.storage.clear();
- }
 
 
   
 
 
 
+}
 }

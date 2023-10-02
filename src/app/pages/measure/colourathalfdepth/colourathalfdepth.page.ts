@@ -73,7 +73,7 @@ async getLocation() {
 
 
 
-// store GPS info. take second fix
+// store GPS info.
 await this.storage.create();
 
 
