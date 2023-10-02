@@ -1,30 +1,43 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>About</ion-title>
-
-   <ion-buttons slot="start">
-     <ion-back-button></ion-back-button>
-   </ion-buttons>
-
+    <ion-title><b>About</b></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item>
 
-<img src="assets/img/monocle_logo.png"></ion-item>
-<ion-item>
-Coordination: PML<br>
-App development: DDQ B.V.<br>
-Hardware development: Brewtek<br>
-</ion-item>
-<ion-item>
+  <ion-card>
+    <ion-card-content>
+ 
+      
+      <ion-item>
+        <div class="multi-line-label">
+          App development: DDQ Pocket Science B.V.<br>
+          Hardware development: Brewtek<br>
+          Data and processing: Plymouth Marine Laboratory
+          
+        </div>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
-<ion-card>
-<img src="assets/img/eu_logo.png"><br>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title><b>Funding</b></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-img slot="start" src="assets/img/eu_logo.png"></ion-img>
+      </ion-item>
+      <ion-item>
+        <div class="multi-line-label">
+          Parts of this project have received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 776480
+        </div>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
-This project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 776480
-
-</ion-card>
-</ion-item>
 </ion-content>

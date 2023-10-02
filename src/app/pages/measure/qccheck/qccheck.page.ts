@@ -10,18 +10,20 @@ import { ENV } from '../../../app.constant';
   styleUrls: ['./qccheck.page.scss'],
 })
 export class QccheckPage implements OnInit {
+
+
   // Mobis Entries (default)
   private parseAppId: string = ENV.parseAppId;
   private parseServerUrl: string = ENV.parseServerUrl;
   private parseJSKey: string = ENV.parseJSKey;
- // PML entries for processing and grafana
+  // PML entries for processing and grafana
   private parsePMLAppId: string = ENV.parsePMLAppId;
   private parsePMLServerUrl: string = ENV.parsePMLServerUrl;
   private parsePMLJSKey: string = ENV.parsePMLJSKey;
-
+  private mapsKey: string = ENV.mapsKey;
 
   user = null;
-  language= '';
+  language = '';
   public swversion_number: string;
   public swversion_code: number;
   public latitude: number;
@@ -43,7 +45,7 @@ export class QccheckPage implements OnInit {
 
   newSecchi = { uid: null, swversion_number: null, swversion_code: null, latitude: null, longitude: null, distancetowater: null, reappear: null, colourathalfdepth: null, colourathalfdepthimage: null, colouratsurface: null, colouratsurfaceimage: null, datetimerecorded: null, datetime_ux: null, bottom_visible: null, end_of_tape: null, phvalue: null, angle_estimated: null, secchi_depth: null };
 
-  constructor(private storage: Storage)         {
+  constructor(private storage: Storage) {
 
     this.rec_uid = Guid.raw(); // make it a string
 
@@ -51,9 +53,7 @@ export class QccheckPage implements OnInit {
 
 
 
-
-
-  ngOnInit() {
+ async ngOnInit() {
     this.storage.create();
     this.parseInitialize();
 
@@ -73,20 +73,9 @@ export class QccheckPage implements OnInit {
     });
 
 
-
-    this.storage.get('latitude').then((val) => {
-
-      this.latitude = val;
-
-    });
-
-    this.storage.get('longitude').then((val) => {
-
-      this.longitude = val;
-
-    });
-
-
+    // recheck lat/lon
+    this.latitude = Number(await this.storage.get('latitude'));
+    this.longitude = Number(await this.storage.get('longitude'));
     this.storage.get('distancetowater').then((val) => {
 
       this.distancetowater = val;
@@ -159,7 +148,6 @@ export class QccheckPage implements OnInit {
 
 
 
-
     });
 
 
@@ -189,7 +177,6 @@ export class QccheckPage implements OnInit {
 
 
 
-
     this.storage.get('angle_estimated').then((val) => {
 
       this.angle_estimated = val;
@@ -210,10 +197,14 @@ export class QccheckPage implements OnInit {
 
     var unixTimeStamp = Math.floor(d.getTime() / 1000);
     this.datetime_ux = unixTimeStamp.toString();
+
+
+
+
+
   }
 
   async validate() {
-
 
 
     // now save to Parse
@@ -246,6 +237,9 @@ export class QccheckPage implements OnInit {
 
     try {
       const result = await secchi_store.save();
+
+
+
       console.log('Data saved successfully:', result);
     } catch (error) {
       console.error('Error saving data:', error);
@@ -260,14 +254,17 @@ export class QccheckPage implements OnInit {
 
   private parseInitialize() {
 
-   // Parse.initialize(this.parseAppId, this.parseJSKey);
+    // Parse.initialize(this.parseAppId, this.parseJSKey);
 
     Parse.initialize(this.parsePMLAppId, this.parsePMLJSKey);
 
-//    (Parse as any).serverURL = this.parseServerUrl; // use your server url
+    //    (Parse as any).serverURL = this.parseServerUrl; // use your server url
     (Parse as any).serverURL = this.parsePMLServerUrl; // use your server url
 
   }
 
+  
 
-}
+
+
+  }

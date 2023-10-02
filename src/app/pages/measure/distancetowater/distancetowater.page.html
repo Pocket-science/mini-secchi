@@ -1,32 +1,47 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Distance to water</ion-title>
-
-   <ion-buttons slot="start">
-     <ion-back-button></ion-back-button>
-   </ion-buttons>
-
+    <ion-title>Distance to Water</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<ion-item>
-Wind the disk down to the water surface and record the distance from the handheld device to the water surface. Keep your arm at the same distance from the water for the remaining depth measurements.
-</ion-item>
 
-<img src="assets/img/distancetowater.png"><br>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title><b>Instructions</b></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label class="multi-line-label">
+Wind the disk down to the water surface.
+          Record the distance from the handheld device to the water surface.
+          Keep your arm at the same distance for remaining depth measurements. 
+          </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-img slot="start" src="assets/img/distancetowater.png"></ion-img>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
-<ion-item>
-  <ion-label>Distance to water:</ion-label></ion-item>
-  <ion-item>
- <ion-input [(ngModel)]="distancetowater" type="number" #nameCtrl="ngModel" inputmode="numeric" value="00" min="0" max="200" required="true"  placeholder="Enter distance here"></ion-input>cm</ion-item>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title><b>Measurements</b></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Distance to Water:</ion-label>
+        <ion-input [(ngModel)]="distancetowater" type="number" #nameCtrl="ngModel" inputmode="numeric" min="0" max="200" required="true" placeholder="Enter distance here"></ion-input>
+        <ion-label>cm</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
-
-
- <ion-button expand="block"  (click)="validate()" routerLink="/measure/reappear" routerDirection="forward" >
- Go to step 2
- </ion-button>
-
-
+  <ion-button expand="block" (click)="validate()" routerLink="/measure/reappear" routerDirection="forward">
+    Go to Step 2
+  </ion-button>
 
 </ion-content>

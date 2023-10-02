@@ -1,40 +1,37 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Safety first</ion-title>
-  
-   <ion-buttons slot="start">
-     <ion-back-button></ion-back-button>
-   </ion-buttons>
-
+    <ion-title>Safety First</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
-
 </ion-header>
 
 <ion-content>
 
-  <ion-item>
-    <ion-label>  <ion-icon name="warning-outline"></ion-icon>
-Safety first</ion-label>
-  </ion-item>
-<ion-item>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title><b>Safety Guidelines</b></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-icon slot="start" name="warning-outline"></ion-icon>
+        <ion-label class="multi-line-label">    <p class="ion-text-wrap">
 
+          Work from a stable platform, wear a life vest, and inform someone of your location.
+          Only upload photos safely. Avoid sun reflections.
+          Measure Secchi depth, water colour, and pH without sunglasses.
+          If using pH paper, clip a new section into the provided clip and attach it to the disk.</p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-img slot="start" src="assets/img/attachph.png"></ion-img>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
-Work from a stable platform, wear a life vest and make sure someone knows where you are. Only upload photos if you can do so without risking your safety and your phone.
-Find a spot where you can look into the water, away from sun reflections. Record Secchi depth, water colour and pH without sunglasses.
-<br>
-If you have pH paper, clip a new section into the provided clip and attach it to the disk.
-
-</ion-item>
-
-<br>
-<ion-item>
-<img src="assets/img/attachph.png">
-</ion-item>
-
-
-
- <ion-button expand="block" routerLink="/measure/distancetowater" routerDirection="forward">
-  Go to step 1
-   </ion-button>
+  <ion-button expand="block" routerLink="/measure/distancetowater" routerDirection="forward">
+    Go to Step 1
+  </ion-button>
 
 </ion-content>

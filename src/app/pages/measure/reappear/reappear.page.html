@@ -1,31 +1,47 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Disk reappearance</ion-title>
-
-   <ion-buttons slot="start">
-     <ion-back-button></ion-back-button>
-   </ion-buttons>
-
+    <ion-title>Disk Reappearance</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<ion-item>
-Wind the spindle down until the Secchi disk disappears from sight. Wind it up again until the disk re-appears. <br>
-Note that the disk should be lowered straight down rather than at an angle. Adjust the weight if needed. <br>
-Record the length of the tape from the handheld device. The distance from the device to the water surface will be automatically subtracted.
-</ion-item>
-<img src="assets/img/reappearance.png"><br>
 
-<ion-item>
-  <ion-label>Distance to re-appearance:</ion-label>
-</ion-item>
-<ion-item>
-<!-- Number type input -->
-<ion-input [(ngModel)]="reappear" type="number" inputmode="numeric" placeholder="Enter distance here"></ion-input>cm</ion-item>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title><b>Instructions</b></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label class="multi-line-label">Wind the spindle down until the Secchi disk disappears. 
+          <br>Wind it up again until it re-appears.
+          <br>Lower the disk straight down; adjust weight if needed.
+          <br>Record the length of the tape; <br>distance to water surface is auto-subtracted.
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-img slot="start" src="assets/img/reappearance.png"></ion-img>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
- <ion-button expand="block" (click)="validate()" routerLink="/measure/colourathalfdepth" routerDirection="forward">
- Go to step 3
- </ion-button>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title><b>Measurements</b></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Distance to re-appearance:</ion-label>
+        <ion-input  [(ngModel)]="reappear" type="number" inputmode="numeric" placeholder="Enter distance here"></ion-input>
+        <ion-label>cm</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" (click)="validate()" routerLink="/measure/colourathalfdepth" routerDirection="forward">
+    Go to Step 3
+  </ion-button>
 
 </ion-content>

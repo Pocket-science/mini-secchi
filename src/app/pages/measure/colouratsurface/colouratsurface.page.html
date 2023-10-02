@@ -1,118 +1,115 @@
-  <ion-header>
-<ion-toolbar>
+<ion-header>
+  <ion-toolbar>
     <ion-title>Additional</ion-title>
-
-   <ion-buttons slot="start">
-     <ion-back-button></ion-back-button>
-   </ion-buttons>
-
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  
+  <ion-card>
+    <ion-card><ion-icon name="warning-outline"></ion-icon>You can now wind up the Secchi disk mechanism.</ion-card>
+  </ion-card>
 
-<ion-card><ion-icon name="warning-outline"></ion-icon>You can now wind up the Secchi disk mechanism.</ion-card>
-
-<ion-item>
-<ion-label>
-<b>Acidity</b></ion-label>
-</ion-item>
-
-
-
-
-<ion-item>
-If you used pH paper, compare the colour of the pH strip to the pH colour index provided.
-</ion-item>
-<ion-item>
-
-<img src="assets/img/ph.png"><br>
-</ion-item>
-
-
-
-<ion-item>
-
- <ion-label> The pH value is (1-14):</ion-label>
-</ion-item>
-
-
- <ion-item>
-
- <ion-input [(ngModel)]="phvalue" type="number" inputmode="numeric" value="1" placeholder="Enter pH value here"></ion-input>
+  <!-- Acidity Section --> 
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title><b>Acidity</b></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label class="multi-line-label">Compare the color of the pH strip
+          <br>to the pH color index provided.
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-img slot="start" src="assets/img/ph.png"></ion-img>
+      </ion-item>
+      <ion-item>
+        <ion-label slot="start">The pH value is (1-14):</ion-label>
+        <ion-input  [(ngModel)]="phvalue" type="number" inputmode="numeric" min="1" max="14" placeholder="Enter pH value"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  
 
 
-
-</ion-item>
-
-
-
-
-<ion-item>
-<ion-label><b>
-Surface water colour</b>
-</ion-label>
-</ion-item>
-<ion-item>
-You can upload a photo of the colour of the water, avoiding reflections from the sun:
-Hold the camera 40-45 degrees from horizontal towards the water surface.
-With the sun straight at your back rotate 45 degrees to your left or your right to have the sun diagonally over your left or right shoulder.
-</ion-item>
-
-
-<ion-item>
-<img src="assets/img/bodypos.png"><br>
-</ion-item>
-
-<ion-item>
-
-To add a photo click here:
-
-    <ion-button (click)="takePicture()">
-      <ion-icon name="camera"></ion-icon>
-    </ion-button>
-
-<img [src]="this.ColouratSurfacePictureTaken"/>
-</ion-item>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title><b>Surface Water Colour</b></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label class="multi-line-label">Upload a photo of the water's colour, avoiding sun reflections.
+          <br>Camera angle: 40-45 degrees.
+          <br>Sun: Behind and to the side.
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-img slot="start" src="assets/img/bodypos.png"></ion-img>
+      </ion-item>
+      <ion-item>
+        <ion-label>To add a photo:</ion-label>
+        <ion-button slot="end" (click)="takePicture()">
+          <ion-icon name="camera"></ion-icon>
+        </ion-button>
+        <ion-img [src]="this.ColouratSurfacePictureTaken"></ion-img>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  
 
 
-
-
-
-
-
-<ion-item>
-<ion-label>Looking at the water surface in this direction, the colour of the water is <br> most similar to Forel-Ule colour number (1-21):
-</ion-label>
-</ion-item>
-
-<ion-item>
-
-<ion-input [(ngModel)]="colouratsurface" type="number" inputmode="numeric" placeholder="Enter colour value here"></ion-input></ion-item>
-<ion-item>
-<ion-label><b>Quality control check-list</b></ion-label>
-</ion-item>
-
-
-<ion-item >
-<ion-checkbox slot="start" [(ngModel)]="bottom_visible"></ion-checkbox>
-<ion-label class="ion-text-wrap">The bottom was visible / the disk reached the bottom while I could still see it.</ion-label>
-</ion-item>
-
-
-<ion-item>
-<ion-checkbox  slot="start" [(ngModel)]="end_of_tape"></ion-checkbox>&nbsp; <ion-label class="ion-text-wrap">I reached the end of the tape while I could still see the disk</ion-label>
-</ion-item>
-
-<ion-item>
-<ion-checkbox slot="start"></ion-checkbox><ion-label class="ion-text-wrap">
-I was not able to keep the disk going down at a straight angle. The estimated distance angle is:</ion-label>
-</ion-item>
-<ion-item>
-<ion-input [(ngModel)]="angle_estimated" type="number" inputmode="numeric" value="01" placeholder="Enter" ></ion-input><ion-label class="ion-text-wrap">
-degrees from vertical.</ion-label>
-</ion-item>
-
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title><b>Forel-Ule Colour Number</b></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label class="multi-line-label">Looking at the water, its colour most closely matches Forel-Ule number (1-21):
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label slot="start">Enter Number:</ion-label>
+        <ion-input [(ngModel)]="colouratsurface" type="number" inputmode="numeric" min="1" max="21" placeholder="Enter number"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title><b>Quality Control Check-List</b></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Bottom Visible -->
+      <ion-item>
+        <ion-checkbox slot="start" [(ngModel)]="bottom_visible"></ion-checkbox>
+        <ion-label class="ion-text-wrap">Bottom visible / disk reached bottom while in sight.</ion-label>
+      </ion-item>
+  
+      <!-- End of Tape -->
+      <ion-item>
+        <ion-checkbox slot="start" [(ngModel)]="end_of_tape"></ion-checkbox>
+        <ion-label class="ion-text-wrap">Reached end of tape with disk in sight.</ion-label>
+      </ion-item>
+  
+      <!-- Disk Angle -->
+      <ion-item>
+        <ion-checkbox slot="start"></ion-checkbox>
+        <ion-label class="ion-text-wrap">
+          Disk didn't descend at a straight angle. Estimated angle:
+        </ion-label>
+      </ion-item>
+  
+      <ion-item>
+        <ion-input slot="start" [(ngModel)]="angle_estimated" type="number" inputmode="numeric" placeholder="Enter angle"></ion-input>
+        <ion-label class="ion-text-wrap">degrees from vertical.</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  
  <ion-button expand="block"  (click)="validate()" routerLink="/measure/qccheck" routerDirection="forward">
 Go to step 5
  </ion-button>

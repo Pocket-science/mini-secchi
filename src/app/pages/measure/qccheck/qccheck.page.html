@@ -3,45 +3,74 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/" icon="chevron-back-outline" text=""></ion-back-button>
     </ion-buttons>
-    <ion-title class="ion-text-center">Review</ion-title>
+    <ion-title class="ion-text-center">Review and Submit</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title><b>Values to be Submitted</b></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label class="ion-text-wrap">
+        <ng-container *ngIf="this.rec_uid">
+          <strong>UID:</strong> {{ this.rec_uid }}<br>
+        </ng-container>
+        <ng-container *ngIf="this.latitude">
+          <strong>Latitude:</strong> {{ this.latitude }}<br>
+        </ng-container>
+        <ng-container *ngIf="this.longitude">
+          <strong>Longitude:</strong> {{ this.longitude }}<br>
+        </ng-container>
+        <ng-container *ngIf="this.distancetowater">
+          <strong>Distance to water:</strong> {{ this.distancetowater }} cm<br>
+        </ng-container>
+        <ng-container *ngIf="this.reappear">
+          <strong>Reappear:</strong> {{ this.reappear }} cm<br>
+        </ng-container>
+        <ng-container *ngIf="this.colourathalfdepth">
+          <strong>Colour at half depth:</strong> {{ this.colourathalfdepth }} <br>
+        </ng-container>
+        <ng-container *ngIf="this.colouratsurface">
+          <strong>Colour at surface:</strong> {{ this.colouratsurface }}<br>
+        </ng-container>
+        <ng-container *ngIf="this.phvalue">
+          <strong>pH Value:</strong> {{ this.phvalue }}<br>
+        </ng-container>
+      
+        <ng-container *ngIf="this.bottom_visible">
+          <strong>The bottom was visible:</strong> {{ this.bottom_visible }}<br>
+        </ng-container>
+        <ng-container *ngIf="this.end_of_tape">
+          <strong>Reached end of tape:</strong> {{ this.end_of_tape }}<br>
+        </ng-container>
+        <ng-container *ngIf="this.angle_estimated">
+          <strong>Estimated angle:</strong> {{ this.angle_estimated }} degrees<br>
+        </ng-container>
+        <ng-container *ngIf="this.datetime">
+          <strong>Datetime:</strong> {{ this.datetime }}<br>
+        </ng-container>      </ion-label>
+    </ion-card-content>
+  </ion-card>
 
-<ion-item>
-Values to be submitted:
-</ion-item>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title><b>Additional Tips and Notes</b></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label class="multi-line-label">Wipe the Mini-Secchi disk tape dry after use <br> to prevent it from sticking.</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Thank you for submitting a new Mini-Secchi <br> disk measurement!</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
-<ion-card>
-
-UID: {{this.rec_uid}}<br>
-Latitude: {{this.latitude}}<br>
-Longitude: {{this.longitude}}<br>
-Distancetowater: {{this.distancetowater}} cm<br>
-Reappear: {{this.reappear}} cm<br>
-Colourathalfdepth: {{this.colourathalfdepth}} <br>
-Colouratsurface: {{this.colouratsurface}}<br>
-pH Value: {{this.phvalue}}<br>
-QC Check<br>
-The bottom was visible: {{this.bottom_visible}}<br>
-Reached end of tape: {{this.end_of_tape}}<br>
-Estimated angle: {{this.angle_estimated}} degrees<br>
-Datetime: {{this.datetime}}<br>
-
-</ion-card>
-
-<ion-item>
-Tip: wipe the Mini-Secchi disk tape dry after use so it does not stick.
-<br>
-Thank you for submitting a new mini-Secchi disk measurement!
-</ion-item>
-
-
- <ion-button expand="block" (click)="validate()" routerLink="/home" routerDirection="root">Finish
-
-
- </ion-button>
+  <ion-button expand="block" (click)="validate()" routerLink="/home" routerDirection="root">
+    Submit and Finish
+  </ion-button>
 
 </ion-content>

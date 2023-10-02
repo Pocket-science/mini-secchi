@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
 import { QccheckPageRoutingModule } from './qccheck-routing.module';
-
 import { QccheckPage } from './qccheck.page';
 
 @NgModule({
@@ -13,8 +10,9 @@ import { QccheckPage } from './qccheck.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    QccheckPageRoutingModule
-  ],
-  declarations: [QccheckPage]
+    QccheckPageRoutingModule,
+    ],
+  declarations: [QccheckPage],
+    
 })
 export class QccheckPageModule {}
