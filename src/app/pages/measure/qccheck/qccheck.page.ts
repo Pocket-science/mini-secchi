@@ -3,7 +3,7 @@ import { Storage } from '@ionic/storage-angular';
 import { Guid } from "guid-typescript";
 import * as Parse from 'parse';
 import { ENV } from '../../../app.constant';
-
+import { Geolocation } from '@capacitor/geolocation';
 @Component({
   selector: 'app-qccheck',
   templateUrl: './qccheck.page.html',
@@ -20,7 +20,6 @@ export class QccheckPage implements OnInit {
   private parsePMLAppId: string = ENV.parsePMLAppId;
   private parsePMLServerUrl: string = ENV.parsePMLServerUrl;
   private parsePMLJSKey: string = ENV.parsePMLJSKey;
-  private mapsKey: string = ENV.mapsKey;
 
   user = null;
   language = '';
@@ -28,6 +27,8 @@ export class QccheckPage implements OnInit {
   public swversion_code: number;
   public latitude: number;
   public longitude: number;
+  public latitude_at_start: number;
+  public longitude_at_start: number;
   public distancetowater: number;
   public reappear: number;
   public colourathalfdepth: number;
@@ -42,6 +43,8 @@ export class QccheckPage implements OnInit {
   public datetime_ux: string;
   public secchi_depth: string;
   public rec_uid: string;
+  
+  watchId: any;
 
   newSecchi = { uid: null, swversion_number: null, swversion_code: null, latitude: null, longitude: null, distancetowater: null, reappear: null, colourathalfdepth: null, colourathalfdepthimage: null, colouratsurface: null, colouratsurfaceimage: null, datetimerecorded: null, datetime_ux: null, bottom_visible: null, end_of_tape: null, phvalue: null, angle_estimated: null, secchi_depth: null };
 
@@ -53,11 +56,12 @@ export class QccheckPage implements OnInit {
 
 
 
- async ngOnInit() {
+  async ngOnInit() {
     this.storage.create();
     this.parseInitialize();
 
-
+    this.getLocation();
+    this.startTracking();
 
 
     this.storage.get('swversion_number').then((val) => {
@@ -76,6 +80,12 @@ export class QccheckPage implements OnInit {
     // recheck lat/lon
     this.latitude = Number(await this.storage.get('latitude'));
     this.longitude = Number(await this.storage.get('longitude'));
+
+
+    this.latitude_at_start = Number(await this.storage.get('latitude_at_start'));
+    this.longitude_at_start = Number(await this.storage.get('longitude_at_start'));
+
+
     this.storage.get('distancetowater').then((val) => {
 
       this.distancetowater = val;
@@ -206,7 +216,8 @@ export class QccheckPage implements OnInit {
 
   async validate() {
 
-
+    // stop GPS watch
+    this.stopTracking();
     // now save to Parse
 
     var secchi_data = Parse.Object.extend('secchi_data4');
@@ -263,8 +274,60 @@ export class QccheckPage implements OnInit {
 
   }
 
-  
+
+  async getLocation() {
+    const position = await Geolocation.getCurrentPosition({ enableHighAccuracy: true });
+
+    this.latitude = position.coords.latitude;
+    this.longitude = position.coords.longitude;
+
+
+
+
+
+    // store GPS info.
+    await this.storage.create();
+
+
+    this.storage.set('latitude', this.latitude).then(result => {
+      console.log('Data is saved');
+    }).catch(e => {
+      console.log("error: " + e);
+    });
+
+
+    this.storage.set('longitude', this.longitude).then(result => {
+      console.log('Data is saved');
+    }).catch(e => {
+      console.log("error: " + e);
+    });
+
+
 
 
 
   }
+
+  async startTracking() {
+    this.watchId = Geolocation.watchPosition({ enableHighAccuracy: true }, (position, err) => {
+      if (position) {
+
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+    
+        console.log('Latitude: ', position.coords.latitude, ', Longitude: ', position.coords.longitude);
+      }
+      if (err) {
+        console.log('Error: ', err);
+      }
+    });
+  }
+
+  stopTracking() {
+    if (this.watchId) {
+      Geolocation.clearWatch({ id: this.watchId });
+    }
+  }
+
+
+}

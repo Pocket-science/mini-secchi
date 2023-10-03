@@ -18,6 +18,13 @@
         <ng-container *ngIf="this.rec_uid">
           <strong>UID:</strong> {{ this.rec_uid }}<br>
         </ng-container>
+        <ng-container *ngIf="this.latitude_at_start">
+          <strong>Latitude at start:</strong> {{ this.latitude_at_start }}<br>
+        </ng-container>
+        <ng-container *ngIf="this.longitude_at_start">
+          <strong>Longitude at start:</strong> {{ this.longitude_at_start}}<br>
+        </ng-container>
+
         <ng-container *ngIf="this.latitude">
           <strong>Latitude:</strong> {{ this.latitude }}<br>
         </ng-container>
