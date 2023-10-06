@@ -210,3 +210,5 @@ mini_secchi_keystore
 
 resources/ios/**/*
 resources/android/**/*
+firebase.json
+google-services.json

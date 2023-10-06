@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { Plugins } from '@capacitor/core';
-import {  CameraResultType } from '@capacitor/camera';
-import { Geolocation} from '@capacitor/geolocation';
+import { CameraResultType } from '@capacitor/camera';
+import { Geolocation } from '@capacitor/geolocation';
 
 
 const { Camera } = Plugins;
@@ -14,14 +14,14 @@ const { Camera } = Plugins;
 })
 
 export class ColourathalfdepthPage implements OnInit {
-public reappear_val:number;
-public distancetowater_val: number;
-public secchi_depth:number;
-public colourathalfdepth:number;
-public halfdepth:number;
-public PictureTaken:string;
-latitude: number;
-longitude: number;
+  public reappear_val: number;
+  public distancetowater_val: number;
+  public secchi_depth: number;
+  public colourathalfdepth: number;
+  public halfdepth: number;
+  public PictureTaken: string;
+  latitude: number;
+  longitude: number;
 
 
   constructor(private storage: Storage) { }
@@ -36,104 +36,104 @@ longitude: number;
 
 
 
-  this.storage.get('reappear').then((val) => {
+    this.storage.get('reappear').then((val) => {
 
-    console.log('reappear', val);
-    this.reappear_val=val;
+      console.log('reappear', val);
+      this.reappear_val = val;
 
-  });
-
-
-  this.storage.get('distancetowater').then((val) => {
-
-    this.distancetowater_val=val;
-    this.secchi_depth=this.reappear_val-this.distancetowater_val;
-    
-    //secchi depth (Zsd = reappear 1.2 – 1.1 distance to water)
-
-    this.halfdepth=this.distancetowater_val+((this.reappear_val-this.distancetowater_val)/2);
-
-  });
-
-
-
-
-}
-
-
-
-
-async getLocation() {
-  const position = await Geolocation.getCurrentPosition({ enableHighAccuracy: true });
-
-  this.latitude = position.coords.latitude;
-  this.longitude = position.coords.longitude;
-
-
-
-
-
-// store GPS info.
-await this.storage.create();
-
-
-this.storage.set('latitude', this.latitude).then(result => {
-console.log('Data is saved');
-}).catch(e => {
-console.log("error: " + e);
-});
-  
-
-this.storage.set('longitude', this.longitude).then(result => {
-console.log('Data is saved');
-}).catch(e => {
-console.log("error: " + e);
-});
-
-
-
-
-
-}
-
-async takePicture() {
-  try {
-    const Picture = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: false,
-      resultType: CameraResultType.Base64,
     });
-    this.PictureTaken = "data:image/jpeg;base64," + Picture.base64String;
-   this.storage.set('colourathalfdepthimage', Picture.base64String).then(result => {
-console.log('Data is saved');
-}).catch(e => {
-console.log("error: " + e);
-});
 
 
-  } catch (error) {
-    console.error(error);
+    this.storage.get('distancetowater').then((val) => {
+
+      this.distancetowater_val = val;
+      this.secchi_depth = this.reappear_val - this.distancetowater_val;
+
+      //secchi depth (Zsd = reappear 1.2 – 1.1 distance to water)
+
+      this.halfdepth = this.distancetowater_val + ((this.reappear_val - this.distancetowater_val) / 2);
+
+    });
+
+
+
+
   }
-}
+
+
+
+
+  async getLocation() {
+    const position = await Geolocation.getCurrentPosition({ enableHighAccuracy: true });
+
+    this.latitude = position.coords.latitude;
+    this.longitude = position.coords.longitude;
+
+
+
+
+
+    // store GPS info.
+    await this.storage.create();
+
+
+    this.storage.set('latitude', this.latitude).then(result => {
+      console.log('Data is saved');
+    }).catch(e => {
+      console.log("error: " + e);
+    });
+
+
+    this.storage.set('longitude', this.longitude).then(result => {
+      console.log('Data is saved');
+    }).catch(e => {
+      console.log("error: " + e);
+    });
+
+
+
+
+
+  }
+
+  async takePicture() {
+    try {
+      const Picture = await Camera.getPhoto({
+        quality: 60,
+        allowEditing: false,
+        resultType: CameraResultType.Base64,
+      });
+      this.PictureTaken = "data:image/jpeg;base64," + Picture.base64String;
+      this.storage.set('colourathalfdepthimage', Picture.base64String).then(result => {
+        console.log('Data is saved');
+      }).catch(e => {
+        console.log("error: " + e);
+      });
+
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
 
 
   async validate() {
-  //  alert(`hola ${this.distancetowater}!`);
+    //  alert(`hola ${this.distancetowater}!`);
     await this.storage.create();
 
-this.storage.set('colourathalfdepth', this.colourathalfdepth).then(result => {
-// console.log('Data is saved');
-}).catch(e => {
- console.log("error: " + e);
-});
+    this.storage.set('colourathalfdepth', this.colourathalfdepth).then(result => {
+      // console.log('Data is saved');
+    }).catch(e => {
+      console.log("error: " + e);
+    });
 
 
-this.storage.set('secchi_depth', this.secchi_depth).then(result => {
-// console.log('Data is saved');
-}).catch(e => {
- console.log("error: " + e);
-});
+    this.storage.set('secchi_depth', this.secchi_depth).then(result => {
+      // console.log('Data is saved');
+    }).catch(e => {
+      console.log("error: " + e);
+    });
 
 
 

@@ -265,12 +265,12 @@ export class QccheckPage implements OnInit {
 
   private parseInitialize() {
 
-    // Parse.initialize(this.parseAppId, this.parseJSKey);
+   Parse.initialize(this.parseAppId, this.parseJSKey);
 
-    Parse.initialize(this.parsePMLAppId, this.parsePMLJSKey);
+//    Parse.initialize(this.parsePMLAppId, this.parsePMLJSKey);
 
-    //    (Parse as any).serverURL = this.parseServerUrl; // use your server url
-    (Parse as any).serverURL = this.parsePMLServerUrl; // use your server url
+      (Parse as any).serverURL = this.parseServerUrl; // use your server url
+//    (Parse as any).serverURL = this.parsePMLServerUrl; // use your server url
 
   }
 
