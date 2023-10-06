@@ -3,6 +3,7 @@ import { Browser } from '@capacitor/browser';
 import { Geolocation} from '@capacitor/geolocation';
 import { Storage } from '@ionic/storage-angular';
 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +11,18 @@ import { Storage } from '@ionic/storage-angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
-
+  user = null;
   latitude_at_start: number;
 longitude_at_start: number;
-  constructor(private storage: Storage) {
+  constructor(private storage: Storage,
+    
 
+    private router: Router
+
+    
+    ) {
+      
+  
 
     
   }
