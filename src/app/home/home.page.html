@@ -28,15 +28,19 @@ Certainly, here's a more readable version of your HTML code:
       <ion-list lines="none" class="ion-no-padding">
         <ion-list-header>Account</ion-list-header>
 
-        <ion-item button routerLink="/login-page" >
+        <ion-item button routerLink="/login-page" *ngIf="!isLoggedIn">
           <ion-icon name="person-add-outline"></ion-icon>
           <ion-label>Log in</ion-label>
         </ion-item>
-
-
-        <ion-item button routerLink="/signup-page" >
+        
+        <ion-item button routerLink="/signup-page" *ngIf="!isLoggedIn">
           <ion-icon name="person-add-outline"></ion-icon>
           <ion-label>Sign up</ion-label>
+        </ion-item>
+        
+        <ion-item button (click)="logout()" *ngIf="isLoggedIn">
+          <ion-icon name="log-out-outline"></ion-icon>
+          <ion-label>Log out</ion-label>
         </ion-item>
 
 

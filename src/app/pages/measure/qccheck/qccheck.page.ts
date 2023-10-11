@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { Guid } from "guid-typescript";
 import * as Parse from 'parse';
-import { ENV } from '../../../app.constant';
 import { Geolocation } from '@capacitor/geolocation';
 @Component({
   selector: 'app-qccheck',
@@ -12,14 +11,6 @@ import { Geolocation } from '@capacitor/geolocation';
 export class QccheckPage implements OnInit {
 
 
-  // Mobis Entries (default)
-  private parseAppId: string = ENV.parseAppId;
-  private parseServerUrl: string = ENV.parseServerUrl;
-  private parseJSKey: string = ENV.parseJSKey;
-  // PML entries for processing and grafana
-  private parsePMLAppId: string = ENV.parsePMLAppId;
-  private parsePMLServerUrl: string = ENV.parsePMLServerUrl;
-  private parsePMLJSKey: string = ENV.parsePMLJSKey;
 
   user = null;
   language = '';
@@ -58,7 +49,6 @@ export class QccheckPage implements OnInit {
 
   async ngOnInit() {
     this.storage.create();
-    this.parseInitialize();
 
     this.getLocation();
     this.startTracking();
@@ -259,18 +249,6 @@ export class QccheckPage implements OnInit {
 
 
 
-
-  }
-
-
-  private parseInitialize() {
-
-   Parse.initialize(this.parseAppId, this.parseJSKey);
-
-//    Parse.initialize(this.parsePMLAppId, this.parsePMLJSKey);
-
-      (Parse as any).serverURL = this.parseServerUrl; // use your server url
-//    (Parse as any).serverURL = this.parsePMLServerUrl; // use your server url
 
   }
 

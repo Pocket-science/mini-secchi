@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import * as Parse from 'parse';
-import { ENV } from '../app.constant';
 import { Router } from '@angular/router';  // Import Router
 
 @Component({
@@ -14,17 +13,11 @@ export class LoginPagePage implements OnInit {
 
   showForgotPasswordLink: boolean = false;
 
-  private parseAppId: string = ENV.parseAppId;
-  private parseServerUrl: string = ENV.parseServerUrl;
-  private parseJSKey: string = ENV.parseJSKey;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    Parse.initialize(this.parseAppId, this.parseJSKey);
-
-    
-          (Parse as any).serverURL = this.parseServerUrl; 
+   
 
   }
   errorMessage: string = '';
@@ -35,6 +28,8 @@ export class LoginPagePage implements OnInit {
       // User is logged in, proceed to another action
       this.errorMessage = ''; // clear any previous error message
       this.showForgotPasswordLink = false;
+      this.router.navigate(['/home']);
+
 
     } catch (error) {
       this.errorMessage = 'Failed to log in'; // update the error message

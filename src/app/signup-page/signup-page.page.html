@@ -5,43 +5,59 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
-
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="signupForm" (ngSubmit)="signUp()">
-    <ion-item>
-      <ion-label position="floating">Username</ion-label>
-      <ion-input type="text" formControlName="username"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="signupForm.controls.username.invalid && signupForm.controls.username.touched">
-      <ion-label color="danger">Username is required</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" formControlName="email"></ion-input>
-    </ion-item>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Sign Up Form</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+        <ion-item>
+          <ion-label position="floating">Username</ion-label>
+          <ion-input type="text" formControlName="username"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="signupForm.controls.username.invalid && signupForm.controls.username.touched">
+          <ion-label color="danger">Username is required</ion-label>
+        </ion-item>
 
-    <ion-item *ngIf="signupForm.controls.email.invalid && signupForm.controls.email.touched">
-      <ion-label color="danger">Invalid email</ion-label>
-    </ion-item>
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="signupForm.controls.email.invalid && signupForm.controls.email.touched">
+          <ion-label color="danger">Invalid email</ion-label>
+        </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Repeat Password</ion-label>
-      <ion-input type="password" formControlName="repeatPassword"></ion-input>
-    </ion-item>
-    
-    <ion-item *ngIf="signupForm.hasError('mismatch')">
-      <ion-label color="danger">Passwords do not match</ion-label>
-    </ion-item>
-    <ion-item *ngIf="signupForm.controls.password.invalid && signupForm.controls.password.touched">
-      <ion-label color="danger">Password must be at least 8 characters</ion-label>
-    </ion-item>
-
-    <ion-button type="submit">Sign Up</ion-button>
-  </form>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Repeat Password</ion-label>
+          <ion-input type="password" formControlName="repeatPassword"></ion-input>
+        </ion-item>
+        
+        <ion-item *ngIf="signupForm.hasError('mismatch')">
+          <ion-label color="danger">Passwords do not match</ion-label>
+        </ion-item>
+        <ion-item *ngIf="signupForm.controls.password.invalid && signupForm.controls.password.touched">
+          <ion-label color="danger">Password must be at least 8 characters</ion-label>
+        </ion-item>
+        <ion-item *ngIf="errorMessage">
+          <ion-label color="danger">{{errorMessage}}</ion-label>
+        </ion-item>
+        <ion-button type="submit">Sign Up</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+  <ion-item *ngIf="confirmationMessage">
+    <ion-label>{{confirmationMessage}}</ion-label>
+  </ion-item>
+  <ion-card *ngIf="signupForm.invalid">
+    <ion-card-content>
+      <!-- Your global error messages here -->
+    </ion-card-content>
+  </ion-card>
 </ion-content>

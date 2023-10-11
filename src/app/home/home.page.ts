@@ -1,30 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { Browser } from '@capacitor/browser';
-import { Geolocation} from '@capacitor/geolocation';
+import { Geolocation } from '@capacitor/geolocation';
 import { Storage } from '@ionic/storage-angular';
-
 import { Router } from '@angular/router';
+import * as Parse from 'parse';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit{
+export class HomePage implements OnInit {
+  isLoggedIn = false;
+
   user = null;
+  username= null;
   latitude_at_start: number;
-longitude_at_start: number;
+  longitude_at_start: number;
   constructor(private storage: Storage,
-    
+
 
     private router: Router
 
-    
-    ) {
-      
-  
 
-    
+  ) {
+
+
+
+
   }
 
   async openExternalWebsite() {
@@ -46,47 +49,50 @@ longitude_at_start: number;
   async ngOnInit() {
 
 
-      const position = await Geolocation.getCurrentPosition({ enableHighAccuracy: true });
-    
-      this.latitude_at_start = position.coords.latitude;
-      this.longitude_at_start = position.coords.longitude;
-    
-    
-    
-    
-    
+    const position = await Geolocation.getCurrentPosition({ enableHighAccuracy: true });
+
+    this.latitude_at_start = position.coords.latitude;
+    this.longitude_at_start = position.coords.longitude;
+
+
+    this.isLoggedIn = !!Parse.User.current();
+
+    this.user = Parse.User.current();
+    if (this.user) {
+      this.username = this.user.getUsername();
+    }
+
     // store GPS info at start. Compare later
     await this.storage.create();
-    
+
     this.storage.remove('latitude_at_start');
 
     this.storage.set('latitude_at_start', this.latitude_at_start).then(result => {
-    console.log('Data is saved');
+      console.log('Data is saved');
     }).catch(e => {
-    console.log("error: " + e);
+      console.log("error: " + e);
     });
-    
+
     this.storage.remove('longitude_at_start');
-    
+
     this.storage.set('longitude_at_start', this.longitude_at_start).then(result => {
-    console.log('Data is saved');
+      console.log('Data is saved');
     }).catch(e => {
-    console.log("error: " + e);
+      console.log("error: " + e);
     });
-    
-    
-    
-    
-    
-    
+
+  }
 
 
+  async logout() {
+    try {
+      await Parse.User.logOut();
+      this.user = null;
+      this.router.navigate(['/login-page']); // Navigate to login page
+    } catch (error) {
+      console.error('Error logging out', error);
+    }
+  }
 
 
-
-  
-
-
-
-}
 }

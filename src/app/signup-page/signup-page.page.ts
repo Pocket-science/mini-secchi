@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Parse from 'parse';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { ENV } from '../app.constant';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-page',
@@ -16,11 +16,10 @@ import { ENV } from '../app.constant';
 
 export class SignupPagePage implements OnInit {
   signupForm: FormGroup;
-  private parseAppId: string = ENV.parseAppId;
-  private parseServerUrl: string = ENV.parseServerUrl;
-  private parseJSKey: string = ENV.parseJSKey;
+  confirmationMessage: string = null;
 
-  constructor(private fb: FormBuilder) {
+
+  constructor(private fb: FormBuilder, private router: Router) {
     this.signupForm = this.fb.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -30,8 +29,7 @@ export class SignupPagePage implements OnInit {
   }
 
   ngOnInit() {
-    Parse.initialize(this.parseAppId, this.parseJSKey);
-    (Parse as any).serverURL = this.parseServerUrl;
+
   }
   passwordMatcher(control: AbstractControl): { [key: string]: boolean } | null {
     const password = control.get('password');
@@ -41,7 +39,8 @@ export class SignupPagePage implements OnInit {
     
     return password.value === repeatPassword.value ? null : { 'mismatch': true };
   }
-  
+  errorMessage: string = null;
+
   async signUp() {
     if (this.signupForm.invalid) {
       return;
@@ -57,7 +56,14 @@ export class SignupPagePage implements OnInit {
     try {
       await user.signUp();
       // User is signed up, proceed to next action
+      this.confirmationMessage = "A confirmation email has been sent. Please confirm to log in.";
+
+      setTimeout(() => {
+        this.router.navigate(['/home']);
+      }, 5000);  // Redirects after 5000 milliseconds (5 seconds)
+
     } catch (error) {
+      this.errorMessage = error.message;
       console.error('Failed to sign up:', error);
       // Handle the error as you see fit
     }

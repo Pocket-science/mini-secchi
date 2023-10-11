@@ -5,6 +5,17 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import * as Parse from 'parse';
+import { ENV } from './app.constant'; // your constant file
+
+// Initialize Parse
+/*   // PML entries for processing and grafana
+  private parsePMLAppId: string = ENV.parsePMLAppId;
+  private parsePMLServerUrl: string = ENV.parsePMLServerUrl;
+  private parsePMLJSKey: string = ENV.parsePMLJSKey; */
+
+Parse.initialize(ENV.parseAppId, ENV.parseJSKey);
+(Parse as any).serverURL = ENV.parseServerUrl; 
 
 @NgModule({
   declarations: [AppComponent],
