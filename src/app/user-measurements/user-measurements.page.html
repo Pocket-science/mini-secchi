@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>My measurements</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">User Measurements</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+
+  <ion-item *ngFor="let measurement of userMeasurements">
+    <ion-label>
+      Date: {{measurement.get('datetimerecorded')}}
+    </ion-label>
+
+
+
+    <ion-label>
+      Latitude: {{measurement.get('latitude')}}
+    </ion-label>
+    <ion-label>
+      Longitude: {{measurement.get('longitude')}}
+    </ion-label>
+    <ion-label>
+      Secchi Depth: {{measurement.get('secchi_depth')}}
+    </ion-label>
+  </ion-item>
+
+
+
+</ion-content>

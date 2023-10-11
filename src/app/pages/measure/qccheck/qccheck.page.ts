@@ -217,6 +217,7 @@ export class QccheckPage implements OnInit {
     console.log("saving to Parse");
     if (currentUser) {
       secchi_store.set('user', currentUser);
+      secchi_store.set('user_uid', currentUser.id); //used for string comparison in query
     }
     secchi_store.set('uid', this.rec_uid);
     secchi_store.set('latitude', this.latitude);
