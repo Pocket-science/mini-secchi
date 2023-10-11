@@ -55,7 +55,6 @@ export class HomePage implements OnInit {
     this.longitude_at_start = position.coords.longitude;
 
 
-    this.isLoggedIn = !!Parse.User.current();
 
     this.user = await this.checkUserStatus();
 
@@ -95,6 +94,9 @@ export class HomePage implements OnInit {
   async checkUserStatus() {
     // Your Parse logic to check if user is logged in
     const user = Parse.User.current();
+
+    this.isLoggedIn = !!Parse.User.current();
+
     return user ? user.getUsername() : null;
   }
 

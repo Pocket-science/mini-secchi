@@ -209,17 +209,15 @@ export class QccheckPage implements OnInit {
     // stop GPS watch
     this.stopTracking();
     // now save to Parse
-    const currentUser = Parse.User.current(); 
-     // Conditionally add user to Parse object
-     if (currentUser) {
-      secchi_store.set('user', currentUser);
-      secchi_store.set('user_uid', currentUser.id);
-    }
+    const currentUser = await Parse.User.currentAsync();     // Conditionally add user to Parse object
+   
     var secchi_data = Parse.Object.extend('secchi_data');
     var secchi_store = new secchi_data();
     // set initial data record
     console.log("saving to Parse");
-
+    if (currentUser) {
+      secchi_store.set('user', currentUser);
+    }
     secchi_store.set('uid', this.rec_uid);
     secchi_store.set('latitude', this.latitude);
     secchi_store.set('longitude', this.longitude);
