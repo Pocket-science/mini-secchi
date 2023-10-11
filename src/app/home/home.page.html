@@ -1,6 +1,4 @@
-Certainly, here's a more readable version of your HTML code:
 
-```html
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
@@ -40,6 +38,7 @@ Certainly, here's a more readable version of your HTML code:
         
         <ion-item button (click)="logout()" *ngIf="isLoggedIn">
           <ion-icon name="log-out-outline"></ion-icon>
+          <ion-label>Welcome, {{ user }}</ion-label>
           <ion-label>Log out</ion-label>
         </ion-item>
 

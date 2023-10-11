@@ -57,10 +57,8 @@ export class HomePage implements OnInit {
 
     this.isLoggedIn = !!Parse.User.current();
 
-    this.user = Parse.User.current();
-    if (this.user) {
-      this.username = this.user.getUsername();
-    }
+    this.user = await this.checkUserStatus();
+
 
     // store GPS info at start. Compare later
     await this.storage.create();
@@ -94,5 +92,10 @@ export class HomePage implements OnInit {
     }
   }
 
+  async checkUserStatus() {
+    // Your Parse logic to check if user is logged in
+    const user = Parse.User.current();
+    return user ? user.getUsername() : null;
+  }
 
 }
