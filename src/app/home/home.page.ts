@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { Browser } from '@capacitor/browser';
 import { Geolocation } from '@capacitor/geolocation';
 import { Storage } from '@ionic/storage-angular';
@@ -10,7 +10,7 @@ import * as Parse from 'parse';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, AfterViewInit {
   isLoggedIn = false;
 
   user = null;
@@ -44,7 +44,7 @@ export class HomePage implements OnInit {
 
 
 
-
+async ngAfterViewInit() {    this.user = await this.checkUserStatus();};
 
   async ngOnInit() {
 
@@ -56,7 +56,7 @@ export class HomePage implements OnInit {
 
 
 
-    this.user = await this.checkUserStatus();
+
 
 
     // store GPS info at start. Compare later
