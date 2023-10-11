@@ -16,6 +16,8 @@ import { ENV } from './app.constant'; // your constant file
 
 Parse.initialize(ENV.parseAppId, ENV.parseJSKey);
 (Parse as any).serverURL = ENV.parseServerUrl; 
+Parse.enableLocalDatastore();
+
 
 @NgModule({
   declarations: [AppComponent],
