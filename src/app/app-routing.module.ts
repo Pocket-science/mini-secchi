@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path: 'signup-page',
     loadChildren: () => import('./signup-page/signup-page.module').then( m => m.SignupPagePageModule)
+  },
+  {
+    path: 'reset-password',
+    loadChildren: () => import('./reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
   }
 
 

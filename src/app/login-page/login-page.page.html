@@ -19,4 +19,11 @@
   </ion-item>
 
   <ion-button (click)="login()">Login</ion-button>
+
+  <ion-item *ngIf="errorMessage">
+    <ion-label color="danger">{{errorMessage}}
+    <a *ngIf="showForgotPasswordLink" (click)="navigateToResetPassword()">forgot Password?</a>
+  </ion-label>
+  </ion-item>
+
 </ion-content>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Parse from 'parse';
 import { ENV } from '../app.constant';
+import { Router } from '@angular/router';  // Import Router
 
 @Component({
   selector: 'app-login-page',
@@ -11,12 +12,13 @@ export class LoginPagePage implements OnInit {
   username: string;
   password: string;
 
+  showForgotPasswordLink: boolean = false;
 
   private parseAppId: string = ENV.parseAppId;
   private parseServerUrl: string = ENV.parseServerUrl;
   private parseJSKey: string = ENV.parseJSKey;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     Parse.initialize(this.parseAppId, this.parseJSKey);
@@ -25,13 +27,25 @@ export class LoginPagePage implements OnInit {
           (Parse as any).serverURL = this.parseServerUrl; 
 
   }
+  errorMessage: string = '';
+
   async login() {
     try {
       const user = await Parse.User.logIn(this.username, this.password);
-      // User is logged in, navigate to another page or do something else
+      // User is logged in, proceed to another action
+      this.errorMessage = ''; // clear any previous error message
+      this.showForgotPasswordLink = false;
+
     } catch (error) {
+      this.errorMessage = 'Failed to log in'; // update the error message
+      this.showForgotPasswordLink = true;  // Show the link
+
       console.error('Failed to log in:', error);
-      // Handle the error however you'd like
     }
   }
+
+  navigateToResetPassword() {
+    this.router.navigate(['/reset-password']);  // Navigate to Reset Password page
+  }
+  
 }
