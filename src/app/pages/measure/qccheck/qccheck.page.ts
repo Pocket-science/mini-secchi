@@ -211,7 +211,7 @@ export class QccheckPage implements OnInit {
     // now save to Parse
     const currentUser = await Parse.User.currentAsync();     // Conditionally add user to Parse object
    
-    var secchi_data = Parse.Object.extend('secchi_data');
+    var secchi_data = Parse.Object.extend('secchi_data4');
     var secchi_store = new secchi_data();
     // set initial data record
     console.log("saving to Parse");

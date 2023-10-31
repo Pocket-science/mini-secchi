@@ -9,6 +9,29 @@ import * as Parse from 'parse';
 })
 export class UserMeasurementsPage implements OnInit {
   userMeasurements: any[]; // Declare the property here
+  forelUleColors = {
+    1: "#2158BC",
+    2: "#3169C5",
+    3: "#3280A0",
+    4: "#568F96",
+    5: "#559896",
+    6: "#6D9098",
+    7: "#6D8C86",
+    8: "#759E72",
+    9: "#7BA654",
+    10: "#7DAE38",
+    11: "#95B645",
+    12: "#94B660",
+    13: "#AAB86D",
+    14: "#ADB55F",
+    15: "#A8A965",
+    16: "#A9A95D",
+    17: "#AEA960",
+    18: "#B3A053",
+    19: "#AF8A44",
+    20: "#A46905",
+    21: "#A14D04"
+};
 
   constructor() { }
 
@@ -24,6 +47,14 @@ export class UserMeasurementsPage implements OnInit {
     this.userMeasurements = userMeasurements; 
     console.log("User Measurements: ", userMeasurements);
 
-  }
 
+
+
+
+
+
+  }
+  getColorForValue(value: number) {
+    return this.forelUleColors[value];
+}
 }

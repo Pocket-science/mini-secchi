@@ -18,20 +18,29 @@
 
   <ion-item *ngFor="let measurement of userMeasurements">
     <ion-label>
-      Date: {{measurement.get('datetimerecorded')}}
+      Date: {{measurement.get('datetimerecorded') | date:'medium'}}
     </ion-label>
-
-
 
     <ion-label>
-      Latitude: {{measurement.get('latitude')}}
+      <a [href]="'https://www.google.com/maps/search/?api=1&query=' + measurement.get('latitude') + ',' + measurement.get('longitude')" target="_blank">
+        Latitude: {{measurement.get('latitude') | number:'1.4-4'}}
+      </a>
     </ion-label>
     <ion-label>
-      Longitude: {{measurement.get('longitude')}}
+      <a [href]="'https://www.google.com/maps/search/?api=1&query=' + measurement.get('latitude') + ',' + measurement.get('longitude')" target="_blank">
+        Longitude: {{measurement.get('longitude') | number:'1.4-4'}}
+      </a>
     </ion-label>
+    
     <ion-label>
       Secchi Depth: {{measurement.get('secchi_depth')}}
     </ion-label>
+
+
+    <ion-label>
+      Forel-Ule Color: {{measurement.get('colourathalfdepth')}} <span [style.background-color]="getColorForValue(measurement.get('colourathalfdepth'))" style="display:inline-block; width:20px; height:20px; vertical-align:middle;"></span>
+    </ion-label>
+
   </ion-item>
 
 
