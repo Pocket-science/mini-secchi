@@ -4,6 +4,7 @@ import { Geolocation } from '@capacitor/geolocation';
 import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
 import * as Parse from 'parse';
+import { EventEmitterServiceService } from '../event-emitter-service.service';
 
 @Component({
   selector: 'app-home',
@@ -19,15 +20,19 @@ export class HomePage implements OnInit, AfterViewInit {
   longitude_at_start: number;
   constructor(private storage: Storage,
 
-
+    private sharedService: EventEmitterServiceService,
     private router: Router
 
 
   ) {
 
+    this.sharedService.userLoggedIn.subscribe(() => {
+      this.checkUserStatus();
+    });
 
-
-
+    this.sharedService.userLoggedOut.subscribe(() => {
+      this.checkUserStatus();  // This will set the user to null, as the user has logged out
+    });
   }
 
   async openExternalWebsite() {
@@ -85,6 +90,8 @@ async ngAfterViewInit() {    this.user = await this.checkUserStatus();};
     try {
       await Parse.User.logOut();
       this.user = null;
+      this.sharedService.userLoggedOut.emit();  // Emitting the logout event
+
       this.router.navigate(['/login-page']); // Navigate to login page
     } catch (error) {
       console.error('Error logging out', error);

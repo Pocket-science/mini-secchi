@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import * as Parse from 'parse';
 import { Router } from '@angular/router';  // Import Router
+import { EventEmitterServiceService } from '../event-emitter-service.service';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.page.html',
   styleUrls: ['./login-page.page.scss'],
+  
 })
 export class LoginPagePage implements OnInit {
   username: string;
@@ -14,7 +16,7 @@ export class LoginPagePage implements OnInit {
   showForgotPasswordLink: boolean = false;
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private sharedService:EventEmitterServiceService) { }
 
   ngOnInit() {
    
@@ -28,6 +30,8 @@ export class LoginPagePage implements OnInit {
       // User is logged in, proceed to another action
       this.errorMessage = ''; // clear any previous error message
       this.showForgotPasswordLink = false;
+      this.sharedService.userLoggedIn.emit();
+
       this.router.navigate(['/home']);
 
 

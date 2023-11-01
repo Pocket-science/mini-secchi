@@ -11,8 +11,6 @@ import { ENV } from './app.constant'; // your constant file
 Parse.initialize(ENV.parseAppId, ENV.parseJSKey);
 (Parse as any).serverURL = ENV.parseServerUrl; 
 
-Parse.initialize(ENV.parsePMLAppId, ENV.parsePMLJSKey);
-(Parse as any).serverURL = ENV.parsePMLServerUrl; 
 
 
 Parse.enableLocalDatastore();

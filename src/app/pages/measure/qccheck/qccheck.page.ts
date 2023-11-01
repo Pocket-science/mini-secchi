@@ -34,7 +34,7 @@ export class QccheckPage implements OnInit {
   public datetime_ux: string;
   public secchi_depth: string;
   public rec_uid: string;
-  
+
   watchId: any;
 
   newSecchi = { uid: null, swversion_number: null, swversion_code: null, latitude: null, longitude: null, distancetowater: null, reappear: null, colourathalfdepth: null, colourathalfdepthimage: null, colouratsurface: null, colouratsurfaceimage: null, datetimerecorded: null, datetime_ux: null, bottom_visible: null, end_of_tape: null, phvalue: null, angle_estimated: null, secchi_depth: null };
@@ -210,8 +210,8 @@ export class QccheckPage implements OnInit {
     this.stopTracking();
     // now save to Parse
     const currentUser = await Parse.User.currentAsync();     // Conditionally add user to Parse object
-   
-    var secchi_data = Parse.Object.extend('secchi_data4');
+
+    var secchi_data = Parse.Object.extend('secchi_data');
     var secchi_store = new secchi_data();
     // set initial data record
     console.log("saving to Parse");
@@ -235,16 +235,11 @@ export class QccheckPage implements OnInit {
     secchi_store.set('secchi_depth', this.secchi_depth);
     secchi_store.set('datetime_ux', this.datetime_ux.toString());
     secchi_store.set('datetimerecorded', this.datetime.toISOString());
-
-
-
+    secchi_store.set('synced_pml', 'N');
 
 
     try {
       const result = await secchi_store.save();
-
-
-
       console.log('Data saved successfully:', result);
     } catch (error) {
       console.error('Error saving data:', error);
@@ -296,7 +291,7 @@ export class QccheckPage implements OnInit {
 
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-    
+
         console.log('Latitude: ', position.coords.latitude, ', Longitude: ', position.coords.longitude);
       }
       if (err) {
