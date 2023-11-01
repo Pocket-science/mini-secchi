@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Parse from 'parse';
 import { Router } from '@angular/router';  // Import Router
-import { EventEmitterServiceService } from '../event-emitter-service.service';
+import { EventEmitterServiceService } from '../services/event-emitter-service.service';
 
 @Component({
   selector: 'app-login-page',

@@ -12,8 +12,7 @@ export interface WeatherData{
 })
 
 export class WeatherService {
-  public blackGemCoords: {lat: number; lng: number} = {lat: -29.257674, lng: -70.737855};
-  public meerLichtCoords: {lat: number; lng: number} = {lat: -32.379864, lng: 20.811234};
+
 
   userLat: number;
   userLng: number;

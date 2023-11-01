@@ -4,7 +4,7 @@ import { Geolocation } from '@capacitor/geolocation';
 import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
 import * as Parse from 'parse';
-import { EventEmitterServiceService } from '../event-emitter-service.service';
+import { EventEmitterServiceService } from '../services/event-emitter-service.service';
 
 @Component({
   selector: 'app-home',
@@ -33,6 +33,7 @@ export class HomePage implements OnInit, AfterViewInit {
     this.sharedService.userLoggedOut.subscribe(() => {
       this.checkUserStatus();  // This will set the user to null, as the user has logged out
     });
+    
   }
 
   async openExternalWebsite() {
