@@ -14,35 +14,46 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-list>
+    <ion-item-group *ngFor="let measurement of userMeasurements">
+      <ion-item-divider>
+        <ion-label>
+          Date: {{measurement.get('datetimerecorded') | date:'medium'}}
+        </ion-label>
+      </ion-item-divider>
 
+      <ion-item lines="none">
+        <ion-label>
+          <a [href]="'https://www.google.com/maps/search/?api=1&query=' + measurement.get('latitude') + ',' + measurement.get('longitude')" target="_blank">
+            Latitude: {{measurement.get('latitude') | number:'1.4-4'}} |
+            Longitude: {{measurement.get('longitude') | number:'1.4-4'}}
+          </a>
+        </ion-label>
+      </ion-item>
 
-  <ion-item *ngFor="let measurement of userMeasurements">
-    <ion-label>
-      Date: {{measurement.get('datetimerecorded') | date:'medium'}}
-    </ion-label>
+      <ion-item lines="none">
+        <ion-label>
+          Secchi Depth: {{measurement.get('secchi_depth')}}
+        </ion-label>
+      </ion-item>
 
-    <ion-label>
-      <a [href]="'https://www.google.com/maps/search/?api=1&query=' + measurement.get('latitude') + ',' + measurement.get('longitude')" target="_blank">
-        Latitude: {{measurement.get('latitude') | number:'1.4-4'}}
-      </a>
-    </ion-label>
-    <ion-label>
-      <a [href]="'https://www.google.com/maps/search/?api=1&query=' + measurement.get('latitude') + ',' + measurement.get('longitude')" target="_blank">
-        Longitude: {{measurement.get('longitude') | number:'1.4-4'}}
-      </a>
-    </ion-label>
-    
-    <ion-label>
-      Secchi Depth: {{measurement.get('secchi_depth')}}
-    </ion-label>
+      <ion-item lines="none" *ngIf="measurement.get('colourathalfdepth')">
+        <ion-label class="ion-align-items-center">
+          Forel-Ule Color: {{measurement.get('colourathalfdepth')}} 
+          <span [style.background-color]="getColorForValue(measurement.get('colourathalfdepth'))" 
+                style="display:inline-block; width:20px; height:20px; vertical-align:middle;">
+          </span>      </ion-label>
+      </ion-item>
 
+      <ion-item lines="none" *ngIf="measurement.get('colourathalfdepthimage')">
+        <img [src]="measurement.get('colourathalfdepthimage').url()" alt="Colour at Half Depth" class="thumbnail">
+        <ion-label>Colour at half depth image</ion-label>
+      </ion-item>
 
-    <ion-label>
-      Forel-Ule Color: {{measurement.get('colourathalfdepth')}} <span [style.background-color]="getColorForValue(measurement.get('colourathalfdepth'))" style="display:inline-block; width:20px; height:20px; vertical-align:middle;"></span>
-    </ion-label>
-
-  </ion-item>
-
-
-
+      <ion-item lines="none" *ngIf="measurement.get('colouratsurfaceimage')">
+        <img [src]="measurement.get('colouratsurfaceimage').url()" alt="Colour at Surface" class="thumbnail">
+        <ion-label>Colour at surface image</ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
 </ion-content>
