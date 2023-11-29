@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
+import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 import { ShellModule } from '../shell/shell.module';
 
 import { CheckboxWrapperComponent } from './checkbox-wrapper/checkbox-wrapper.component';
@@ -23,7 +24,8 @@ import { RatingInputComponent } from './rating-input/rating-input.component';
     ShowHidePasswordComponent,
     CountdownTimerComponent,
     CounterInputComponent,
-    RatingInputComponent
+    RatingInputComponent,
+    LeafletMapComponent
   ],
   exports: [
     ShellModule,
@@ -31,7 +33,8 @@ import { RatingInputComponent } from './rating-input/rating-input.component';
     ShowHidePasswordComponent,
     CountdownTimerComponent,
     CounterInputComponent,
-    RatingInputComponent
+    RatingInputComponent,
+    LeafletMapComponent
   ]
 })
 export class ComponentsModule {}

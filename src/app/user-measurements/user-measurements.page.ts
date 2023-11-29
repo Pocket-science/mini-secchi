@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import * as Parse from 'parse';
 
+import { LeafletMapComponent } from '../components/leaflet-map/leaflet-map.component';
+import { ModalController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-user-measurements',
@@ -8,8 +11,10 @@ import * as Parse from 'parse';
   styleUrls: ['./user-measurements.page.scss'],
 })
 export class UserMeasurementsPage implements OnInit {
-  userMeasurements: any[]; // Declare the property here
-  forelUleColors = {
+  markers: any[]; // Declare the property here
+ 
+
+  forelUleColors: { [key: number]: string } = {
     1: "#2158BC",
     2: "#3169C5",
     3: "#3280A0",
@@ -31,11 +36,15 @@ export class UserMeasurementsPage implements OnInit {
     19: "#AF8A44",
     20: "#A46905",
     21: "#A14D04"
-};
+  };
 
-  constructor() { }
+  defaultColor: string = "#FFFFFF";
+constructor( private modalController: ModalController) {}
+
 
   async ngOnInit() {
+
+
     const currentUser = Parse.User.current();
     await currentUser.fetch(); // fetch the latest data for this user
     console.log("Current User ID: ", currentUser.id);
@@ -44,17 +53,34 @@ export class UserMeasurementsPage implements OnInit {
     query.equalTo('user_uid', currentUser.id);
 
     const userMeasurements = await query.find();
-    this.userMeasurements = userMeasurements; 
+
+    this.markers = userMeasurements;
+    
     console.log("User Measurements: ", userMeasurements);
-
-
-
-
-
-
-
+    
   }
-  getColorForValue(value: number) {
-    return this.forelUleColors[value];
+
+  getForelUleColor(depth: number | undefined): string {
+    // If depth is not undefined, return the corresponding color, otherwise return default color
+    return depth !== undefined ? this.forelUleColors[depth] || 'defaultColor' : 'defaultColor';
+  }
+
+
+
+async openMapModal(latitude: number, longitude: number) {
+  if (latitude && longitude){
+  const modal = await this.modalController.create({
+    component: LeafletMapComponent,
+    componentProps: {
+      latitude: latitude,
+      longitude: longitude,
+      markers: this.markers,
+    }
+  });
+  return await modal.present();
 }
+}
+
+
+
 }

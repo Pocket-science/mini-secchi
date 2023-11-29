@@ -1,62 +1,48 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>My measurements</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
+    <ion-title>
+My Measurements</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">User Measurements</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-list>
-    <ion-item-group *ngFor="let measurement of userMeasurements">
+  <ion-list *ngFor="let marker of markers">
+    <ion-item-group>
       <ion-item-divider>
-        <ion-label>
-          Date: {{measurement.get('datetimerecorded') | date:'medium'}}
-        </ion-label>
+        <ion-label><ion-icon name="calendar-outline"></ion-icon>{{ marker.createdAt | date: 'medium' }}</ion-label>
+        <ion-buttons slot="end">            <ion-button *ngIf="marker.get('latitude') && marker.get ('longitude')" size="small" (click)="openMapModal(marker.get ('latitude'), marker.get ('longitude'))"><ion-icon name="map-outline"></ion-icon></ion-button>
+        </ion-buttons>
       </ion-item-divider>
+    </ion-item-group>
+    <ion-item lines="full">
+      <ion-avatar slot="start">
+        <img *ngIf="marker.get('colourathalfdepthimage')" [src]="marker.get('colourathalfdepthimage').url()" alt="Image">
+      </ion-avatar>
+      <ion-label class="ion-text-wrap">
+        <ion-row>
+          <ion-col size="9">
+            <ion-label><ion-icon name="water-outline"></ion-icon>Secchi depth: <strong>{{ marker.get('secchi_depth') }}</strong></ion-label>
+          </ion-col>
+          <ion-col>
+            Color
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="9">
+            <ion-label *ngIf="marker.latitude && marker.longitude">
+              <ion-icon name="location-outline"></ion-icon>Lat: {{ marker.get('latitude').toFixed(2) }}, Lon: {{ marker.get('longitude').toFixed(2) }}
+            </ion-label>
+          </ion-col>
+          <ion-col [ngStyle]="{'background-color': getForelUleColor(marker.get('colourathalfdepth'))}">
 
-      <ion-item lines="none">
-        <ion-label>
-          <a [href]="'https://www.google.com/maps/search/?api=1&query=' + measurement.get('latitude') + ',' + measurement.get('longitude')" target="_blank">
-            Latitude: {{measurement.get('latitude') | number:'1.4-4'}} |
-            Longitude: {{measurement.get('longitude') | number:'1.4-4'}}
-          </a>
-        </ion-label>
-      </ion-item>
-
-      <ion-item lines="none">
-        <ion-label>
-          Secchi Depth: {{measurement.get('secchi_depth')}}
-        </ion-label>
-      </ion-item>
-
-      <ion-item lines="none" *ngIf="measurement.get('colourathalfdepth')">
-        <ion-label class="ion-align-items-center">
-          Forel-Ule Color: {{measurement.get('colourathalfdepth')}} 
-          <span [style.background-color]="getColorForValue(measurement.get('colourathalfdepth'))" 
-                style="display:inline-block; width:20px; height:20px; vertical-align:middle;">
-          </span>      </ion-label>
-      </ion-item>
-
-      <ion-item lines="none" *ngIf="measurement.get('colourathalfdepthimage')">
-        <div class="image-container">
-          <img [src]="measurement.get('colourathalfdepthimage').url()" alt="Colour at Half Depth" class="thumbnail">
-          <div class="image-caption">Colour at half depth image</div>
-        </div>
-      </ion-item>
-      
-      <ion-item lines="none" *ngIf="measurement.get('colouratsurfaceimage')">
-        <div class="image-container">
-          <img [src]="measurement.get('colouratsurfaceimage').url()" alt="Colour at Surface" class="thumbnail">
-          <div class="image-caption">Colour at surface image</div>
-        </div>
-      </ion-item>    </ion-item-group>
+          </ion-col>
+        </ion-row>
+      </ion-label>
+    </ion-item>
   </ion-list>
 </ion-content>
+
+
