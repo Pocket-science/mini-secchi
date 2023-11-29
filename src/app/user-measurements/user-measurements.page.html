@@ -13,7 +13,7 @@ My Measurements</ion-title>
     <ion-item-group>
       <ion-item-divider>
         <ion-label><ion-icon name="calendar-outline"></ion-icon>{{ marker.createdAt | date: 'medium' }}</ion-label>
-        <ion-buttons slot="end">            <ion-button *ngIf="marker.get('latitude') && marker.get ('longitude')" size="small" (click)="openMapModal(marker.get ('latitude'), marker.get ('longitude'))"><ion-icon name="map-outline"></ion-icon></ion-button>
+        <ion-buttons slot="end"> <ion-button *ngIf="marker.get('latitude') && marker.get ('longitude')" size="small" (click)="openMapModal(marker.get ('latitude'), marker.get ('longitude'))"><ion-icon name="map-outline"></ion-icon></ion-button>
         </ion-buttons>
       </ion-item-divider>
     </ion-item-group>
